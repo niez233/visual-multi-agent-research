@@ -4,23 +4,9 @@
 Pure local (no API server) Visual Multi-Agent chain system runner:
 Observer -> Reasoner -> Verifier (optional retry)
 
-Features (runner-level):
-- YAML config support + CLI overrides
-- Unified CLI for prepare / eval / analyze (MMBench & MME)
-- Output directory management (de-dup)
-- Structured logging (file + console) with API-key masking (via common.logging_utils)
-- Resume support (skip completed examples; rerun invalid/incomplete) via tools.resume_utils
-- Writes predictions.jsonl + summary.json
-
-Dependencies (typical):
-  pip install datasets huggingface_hub transformers accelerate torch pillow pydantic tqdm jsonlines pyyaml python-dotenv
-
-Project layout expected (as previously described):
-  common/logging_utils.py
-  tools/dataset_utils.py
-  tools/resume_utils.py
-  chains/visual_chain.py
-  local_mm_backend.py
+Updates:
+- Pass gt into chain.run_one(..., gt=gt) so Verifier runs in JUDGE mode for benchmark eval.
+- Add retry_accept_policy switch (always/never/if_better) to control rollback/overwrite.
 """
 
 from __future__ import annotations
@@ -33,7 +19,6 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-# ========== Cleaner logs (must be set BEFORE importing HF/transformers) ==========
 os.environ.setdefault("HF_HUB_DISABLE_PROGRESS_BARS", "1")
 os.environ.setdefault("HF_HUB_VERBOSITY", "error")
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
@@ -43,7 +28,6 @@ import jsonlines
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-# ---- project imports ----
 from common.logging_utils import (
     setup_run_logging,
     log_run_config,
@@ -81,7 +65,6 @@ from chains.visual_chain import (
 # ============================================================
 
 def load_config_file(config_path: Optional[str]) -> Dict[str, Any]:
-    """Load YAML config, return dict (empty if none)."""
     if not config_path:
         return {}
     p = Path(config_path)
@@ -96,7 +79,6 @@ def load_config_file(config_path: Optional[str]) -> Dict[str, Any]:
 
 
 def deep_get(d: Dict[str, Any], path: str, default: Any = None) -> Any:
-    """Read nested dict value like 'model.name'."""
     cur: Any = d
     for key in path.split("."):
         if not isinstance(cur, dict) or key not in cur:
@@ -106,7 +88,6 @@ def deep_get(d: Dict[str, Any], path: str, default: Any = None) -> Any:
 
 
 def apply_override(base: Dict[str, Any], path: str, value: Any) -> None:
-    """Set nested dict value like 'model.name' = value, creating dicts as needed."""
     keys = path.split(".")
     cur = base
     for k in keys[:-1]:
@@ -117,16 +98,7 @@ def apply_override(base: Dict[str, Any], path: str, value: Any) -> None:
 
 
 def merge_cli_into_config(args: argparse.Namespace, cfg: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    CLI overrides config when CLI arg is not None.
-    Keeps config structure similar to:
-      dataset: {out_root, hf_endpoint, dataset_id, split, limit}
-      model: {name, device_map, torch_dtype, max_image_pixels, use_fast_processor}
-      generation: {max_tokens, temperature, no_retry}
-      mmbench: {use_choice_extractor}
-      output: {dir_prefix, run_name}
-    """
-    out = dict(cfg)  # shallow copy; nested updates below
+    out = dict(cfg)
 
     # dataset
     if getattr(args, "out_root", None) is not None:
@@ -150,7 +122,6 @@ def merge_cli_into_config(args: argparse.Namespace, cfg: Dict[str, Any]) -> Dict
     if getattr(args, "max_image_pixels", None) is not None:
         apply_override(out, "model.max_image_pixels", args.max_image_pixels)
     if getattr(args, "use_fast_processor", None) is not None:
-        # stored as bool/None in config
         ufp = parse_boolish(args.use_fast_processor)
         apply_override(out, "model.use_fast_processor", ufp)
 
@@ -161,6 +132,10 @@ def merge_cli_into_config(args: argparse.Namespace, cfg: Dict[str, Any]) -> Dict
         apply_override(out, "generation.temperature", args.temperature)
     if getattr(args, "no_retry", None) is not None:
         apply_override(out, "generation.no_retry", bool(args.no_retry))
+
+    # NEW: retry accept policy
+    if getattr(args, "retry_accept_policy", None) is not None:
+        apply_override(out, "generation.retry_accept_policy", args.retry_accept_policy)
 
     # mmbench
     if getattr(args, "no_choice_extractor", None) is not None:
@@ -176,7 +151,6 @@ def merge_cli_into_config(args: argparse.Namespace, cfg: Dict[str, Any]) -> Dict
 
 
 def parse_boolish(v: Any) -> Optional[bool]:
-    """Parse 'true/false/none' style into bool/None."""
     if v is None:
         return None
     s = str(v).strip().lower()
@@ -190,9 +164,6 @@ def parse_boolish(v: Any) -> Optional[bool]:
 
 
 def generate_output_dir(prefix: str | Path, name: str) -> Path:
-    """
-    Create output dir prefix/name with de-dup suffixes name2, name3, ...
-    """
     prefix_path = Path(prefix)
     prefix_path.mkdir(parents=True, exist_ok=True)
 
@@ -258,10 +229,8 @@ def analyze_predictions(pred_jsonl: str | Path) -> Dict[str, Any]:
 
 
 def run_eval(cmd: str, cfg: Dict[str, Any], resume_dir: Optional[Path]) -> Dict[str, Any]:
-    # ---- output dir ----
     run_name = deep_get(cfg, "output.run_name")
     if not run_name:
-        # default run_name based on cmd + model short name
         model_name = deep_get(cfg, "model.name", "model")
         short = str(model_name).split("/")[-1].replace(":", "_")
         run_name = f"{cmd}_{short}"
@@ -275,14 +244,11 @@ def run_eval(cmd: str, cfg: Dict[str, Any], resume_dir: Optional[Path]) -> Dict[
 
     logger = setup_run_logging(output_dir, name="vmas")
 
-    # Save resolved config snapshot
     resolved_cfg_path = output_dir / "resolved_config.yaml"
     resolved_cfg_path.write_text(yaml.safe_dump(cfg, allow_unicode=True, sort_keys=False), encoding="utf-8")
 
-    # Log config
     log_run_config(logger, cfg, deep_get(cfg, "_config_path"))
 
-    # ---- dataset prep ----
     ds_out_root = Path(deep_get(cfg, "dataset.out_root", "./datasets_out"))
     hf_endpoint = deep_get(cfg, "dataset.hf_endpoint")
     set_hf_endpoint(hf_endpoint)
@@ -308,7 +274,6 @@ def run_eval(cmd: str, cfg: Dict[str, Any], resume_dir: Optional[Path]) -> Dict[
     examples = load_local_dataset(data_jsonl)
     prepared = prepare_examples(examples)
 
-    # ---- resume ----
     rs: Optional[ResumeState] = None
     if resume_dir:
         rs = load_resume_state(output_dir)
@@ -319,7 +284,6 @@ def run_eval(cmd: str, cfg: Dict[str, Any], resume_dir: Optional[Path]) -> Dict[
         pending = prepared
         logger.info("Resume disabled: pending=%d", len(pending))
 
-    # ---- backend + chain ----
     model_name = deep_get(cfg, "model.name")
     if not model_name:
         raise ValueError("Missing required config: model.name (or pass --model).")
@@ -338,25 +302,30 @@ def run_eval(cmd: str, cfg: Dict[str, Any], resume_dir: Optional[Path]) -> Dict[
     gen_temperature = float(deep_get(cfg, "generation.temperature", 0.2))
     no_retry = bool(deep_get(cfg, "generation.no_retry", False))
 
+    # NEW: retry accept policy
+    retry_accept_policy = deep_get(cfg, "generation.retry_accept_policy", "if_better")
+    if retry_accept_policy not in ("always", "never", "if_better"):
+        logger.warning("Invalid generation.retry_accept_policy=%s, fallback to if_better", retry_accept_policy)
+        retry_accept_policy = "if_better"
+
     chain = VisualChainSystem(
         backend=backend,
         cfg=ChainConfig(
             max_tokens=gen_max_tokens,
             temperature=gen_temperature,
             retry_on_fail=not no_retry,
+            retry_accept_policy=retry_accept_policy,
         ),
     )
 
-    # ---- outputs ----
     pred_out = output_dir / "predictions.jsonl"
     summary_out = output_dir / "summary.json"
 
-    # If not resume, start fresh predictions file
     if not resume_dir and pred_out.exists():
-        # avoid accidental overwrite of existing run; create a new output dir instead
-        raise FileExistsError(f"{pred_out} already exists. Use --resume or choose a new run_name/output_dir_prefix.")
+        raise FileExistsError(
+            f"{pred_out} already exists. Use --resume or choose a new run_name/output_dir_prefix."
+        )
 
-    # Counters
     correct = 0
     total = 0
     choice_map_fail = 0
@@ -377,7 +346,8 @@ def run_eval(cmd: str, cfg: Dict[str, Any], resume_dir: Optional[Path]) -> Dict[
                     choices = data.get("choices")
                     gt = (data.get("answer") or "").strip()
 
-                    obs, cand, ver = chain.run_one(question, img_path, choices=choices)
+                    # NEW: pass gt so verifier runs in JUDGE mode
+                    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
 
                     pred_final = cand.final
                     mapped_choice = None
@@ -419,11 +389,9 @@ def run_eval(cmd: str, cfg: Dict[str, Any], resume_dir: Optional[Path]) -> Dict[
 
                     log_example_result(logger, ex_id, pred_final, gt, ok, ver.verdict)
 
-                    # update resume state (immediately, for robustness)
                     if resume_dir:
                         rs2 = load_resume_state(output_dir)
                         rs2.completed_ids.add(ex_id)
-                        # if it was previously invalid, clear it
                         if ex_id in rs2.invalid_ids:
                             rs2.invalid_ids.discard(ex_id)
                         save_resume_state(rs2)
@@ -457,6 +425,8 @@ def run_eval(cmd: str, cfg: Dict[str, Any], resume_dir: Optional[Path]) -> Dict[
         "choice_mapping_failures": choice_map_fail,
         "errors": error_count,
         "resume_enabled": bool(resume_dir),
+        "retry_accept_policy": retry_accept_policy,
+        "retry_on_fail": (not no_retry),
     }
 
     summary_out.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -506,6 +476,13 @@ def build_parser() -> argparse.ArgumentParser:
     e1.add_argument("--temperature", type=float, default=None)
     e1.add_argument("--no_retry", action="store_true")
     e1.add_argument("--no_choice_extractor", action="store_true")
+    # NEW
+    e1.add_argument(
+        "--retry_accept_policy",
+        default=None,
+        choices=["always", "never", "if_better"],
+        help="Retry overwrite policy: always / never / if_better",
+    )
 
     # Eval MME
     e2 = sub.add_parser("eval-mme", help="Evaluate on prepared MME (local pipeline)")
@@ -522,6 +499,13 @@ def build_parser() -> argparse.ArgumentParser:
     e2.add_argument("--max_tokens", type=int, default=None)
     e2.add_argument("--temperature", type=float, default=None)
     e2.add_argument("--no_retry", action="store_true")
+    # NEW
+    e2.add_argument(
+        "--retry_accept_policy",
+        default=None,
+        choices=["always", "never", "if_better"],
+        help="Retry overwrite policy: always / never / if_better",
+    )
 
     # Analyze
     a1 = sub.add_parser("analyze", help="Analyze a predictions.jsonl file")
@@ -539,10 +523,8 @@ def main() -> None:
     cfg = load_config_file(args.config)
     cfg = merge_cli_into_config(args, cfg)
 
-    # Resolve resume directory (if any)
     resume_target = resolve_resume_dir(args.resume, Path("."))
 
-    # Prepare commands: do not need model
     if args.cmd == "prepare-mmbench":
         ds_out_root = Path(deep_get(cfg, "dataset.out_root", "./datasets_out"))
         set_hf_endpoint(deep_get(cfg, "dataset.hf_endpoint"))
@@ -569,7 +551,6 @@ def main() -> None:
         return
 
     if args.cmd in ("eval-mmbench", "eval-mme"):
-        # If resume specified, run_name/output_dir_prefix are ignored (we append/continue)
         if resume_target:
             print(f"Resume from: {resume_target}")
         summary = run_eval(args.cmd, cfg, resume_target)
@@ -581,5 +562,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
  # python vmas_local_eval.py --config config/mme_local.yaml eval-mme
- # python vmas_local_eval.py --config config/mmbench_local.yaml eval-mmbench
+ # python vmas_local_eval.py --config config/mmbench_local.yaml eval-mmbench --retry_accept_policy never
+ # python vmas_local_eval.py --config config/mme_local.yaml eval-mme --retry_accept_policy never

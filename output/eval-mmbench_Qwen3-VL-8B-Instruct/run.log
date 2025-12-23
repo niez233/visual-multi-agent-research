@@ -1,0 +1,1131 @@
+[2025-12-23 09:47:21,097] INFO - ============================================================
+[2025-12-23 09:47:21,098] INFO - Run Config
+[2025-12-23 09:47:21,098] INFO - Config file: config/mmbench_local.yaml
+[2025-12-23 09:47:21,098] INFO - dataset: {'out_root': './datasets_out', 'hf_endpoint': None, 'dataset_id': 'HuggingFaceM4/MMBench_dev', 'split': 'train', 'limit': 200}
+[2025-12-23 09:47:21,098] INFO - model: {'name': 'Qwen/Qwen3-VL-8B-Instruct', 'device_map': 'auto', 'torch_dtype': 'auto', 'max_image_pixels': None, 'use_fast_processor': None}
+[2025-12-23 09:47:21,098] INFO - generation: {'max_tokens': 800, 'temperature': 0.2, 'no_retry': False, 'retry_accept_policy': 'never'}
+[2025-12-23 09:47:21,098] INFO - mmbench: {'use_choice_extractor': True}
+[2025-12-23 09:47:21,098] INFO - _config_path: config/mmbench_local.yaml
+[2025-12-23 09:47:21,098] INFO - ============================================================
+[2025-12-23 09:47:21,098] INFO - Dataset prepared: datasets_out/mmbench/HuggingFaceM4_MMBench_dev__train__limit200/data.jsonl
+[2025-12-23 09:47:21,100] INFO - Resume disabled: pending=200
+[2025-12-23 09:47:32,913] INFO - >> [1/200] Start example=mmbench:0
+[2025-12-23 09:47:49,675] INFO - << example=mmbench:0 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 09:47:49,675] INFO - >> [2/200] Start example=mmbench:1
+[2025-12-23 09:48:12,329] INFO - << example=mmbench:1 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 09:48:12,329] INFO - >> [3/200] Start example=mmbench:2
+[2025-12-23 09:48:25,173] INFO - << example=mmbench:2 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 09:48:25,174] INFO - >> [4/200] Start example=mmbench:3
+[2025-12-23 09:50:30,859] WARNING - !! example=mmbench:3 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "A man in a blue shirt and sunglasses on his head operates a blue football launcher with a football on its launching mechanism. A Union Jack flag is attached to the base of the launcher. In the background, a smaller inset image shows a person running on a green field. A black tarp is visible behind the launcher.",\n  "objects": [\n    {\n      "label": "football launcher",\n      "attributes": [\n        "blue",\n        "tripod legs",\n        "white circular plates"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        100,\n        400,\n        800,\n        980\n      ],\n      "relations": [\n        "has football on launching mechanism",\n        "has Union Jack flag on base"\n      ],\n      "bboxes_xyxy": [\n        [\n          100,\n          400,\n          800,\n          980\n        ]\n      ]\n    },\n    {\n      "label": "football",\n      "attributes": [\n        "brown",\n        "oval"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        500,\n        550,\n        650,\n        700\n      ],\n      "relations": [\n        "on launching mechanism of football launcher"\n      ],\n      "bboxes_xyxy": [\n        [\n          500,\n          550,\n          650,\n          700\n        ]\n      ]\n    },\n    {\n      "label": "person operating launcher",\n      "attributes": [\n        "blue shirt",\n        "sunglasses on head"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        500,\n        200,\n        900,\n        980\n      ],\n      "relations": [\n        "standing beside football launcher",\n        "holding football"\n      ],\n      "bboxes_xyxy": [\n        [\n          500,\n        200,\n        900,\n        980\n        ]\n      ]\n    },\n    {\n      "label": "person running on field",\n      "attributes": [\n        "white shirt",\n        "dark pants",\n        "running"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        100,\n        100,\n        300,\n        500\n      ],\n      "relations": [\n        "in background inset image"\n      ],\n      "bboxes_xyxy": [\n        [\n          100,\n          100,\n          300,\n          500\n        ]\n      ]\n    },\n    {\n      "label": "Union Jack flag",\n      "attributes": [\n        "red, white, blue",\n        "rectangle",\n        "on base of launcher"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        100,\n        700,\n        250,\n        900\n      ],\n      "relations": [\n        "attached to base of football launcher"\n      ],\n      "bboxes_xyxy": [\n        [\n          100,\n          700,\n          250,\n          900\n        ]\n      ]\n    },\n    {\n      "label": "black tarp",\n      "attributes": [\n        "black"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        100,\n        500,\n        800,\n        980\n      ],\n      "relations": [\n        "behind football launcher"\n      ]')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "A man in a blue shirt and sunglasses on his head operates a blue football launcher with a football on its launching mechanism. A Union Jack flag is attached to the base of the launcher. In the background, a smaller inset image shows a person running on a green field. A black tarp is visible behind the launcher.",
+  "objects": [
+    {
+      "label": "football launcher",
+      "attributes": [
+        "blue",
+        "tripod legs",
+        "white circular plates"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        100,
+        400,
+        800,
+        980
+      ],
+      "relations": [
+        "has football on launching mechanism",
+        "has Union Jack flag on base"
+      ],
+      "bboxes_xyxy": [
+        [
+          100,
+          400,
+          800,
+          980
+        ]
+      ]
+    },
+    {
+      "label": "football",
+      "attributes": [
+        "brown",
+        "oval"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        500,
+        550,
+        650,
+        700
+      ],
+      "relations": [
+        "on launching mechanism of football launcher"
+      ],
+      "bboxes_xyxy": [
+        [
+          500,
+          550,
+          650,
+          700
+        ]
+      ]
+    },
+    {
+      "label": "person operating launcher",
+      "attributes": [
+        "blue shirt",
+        "sunglasses on head"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        500,
+        200,
+        900,
+        980
+      ],
+      "relations": [
+        "standing beside football launcher",
+        "holding football"
+      ],
+      "bboxes_xyxy": [
+        [
+          500,
+        200,
+        900,
+        980
+        ]
+      ]
+    },
+    {
+      "label": "person running on field",
+      "attributes": [
+        "white shirt",
+        "dark pants",
+        "running"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        100,
+        100,
+        300,
+        500
+      ],
+      "relations": [
+        "in background inset image"
+      ],
+      "bboxes_xyxy": [
+        [
+          100,
+          100,
+          300,
+          500
+        ]
+      ]
+    },
+    {
+      "label": "Union Jack flag",
+      "attributes": [
+        "red, white, blue",
+        "rectangle",
+        "on base of launcher"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        100,
+        700,
+        250,
+        900
+      ],
+      "relations": [
+        "attached to base of football launcher"
+      ],
+      "bboxes_xyxy": [
+        [
+          100,
+          700,
+          250,
+          900
+        ]
+      ]
+    },
+    {
+      "label": "black tarp",
+      "attributes": [
+        "black"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        100,
+        500,
+        800,
+        980
+      ],
+      "relations": [
+        "behind football launcher"
+      ]
+[2025-12-23 09:50:30,861] INFO - >> [5/200] Start example=mmbench:4
+[2025-12-23 09:52:36,283] WARNING - !! example=mmbench:4 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "An outdoor weather station mounted on a metal pole, featuring a solar panel, anemometer, and sensor units, set against a backdrop of a rocky hillside and blue sky.",\n  "objects": [\n    {\n      "label": "weather station",\n      "attributes": {\n        "components": [\n          "solar panel",\n          "anemometer",\n          "sensor units"\n        ],\n        "mounting": "on a metal pole",\n        "location": "outdoors on a rocky hillside"\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        250,\n        50,\n        750,\n        950\n      ],\n      "relations": [],\n      "bboxes_xyxy": [\n        [\n          250,\n          50,\n          750,\n          950\n        ]\n      ]\n    },\n    {\n      "label": "solar panel",\n      "attributes": [\n        "rectangular",\n        "mounted on pole",\n        "angled"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        350,\n        200,\n        550,\n        350\n      ],\n      "relations": [\n        "attached to weather station pole"\n      ],\n      "bboxes_xyxy": [\n        [\n          350,\n          200,\n          550,\n          350\n        ]\n      ]\n    },\n    {\n      "label": "anemometer",\n      "attributes": [\n        "cylindrical",\n        "black",\n        "top of pole"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        500,\n        50,\n        650,\n        150\n      ],\n      "relations": [\n        "mounted on top of pole"\n      ],\n      "bboxes_xyxy": [\n        [\n          500,\n          50,\n          650,\n          150\n        ]\n      ]\n    },\n    {\n      "label": "sensor units",\n      "attributes": [\n        "cylindrical",\n        "white",\n        "mounted on pole"\n      ],\n      "count": 2,\n      "bbox_xyxy": [\n        400,\n        350,\n        550,\n        500\n      ],\n      "relations": [\n        "mounted on pole below solar panel"\n      ],\n      "bboxes_xyxy": [\n        [\n          400,\n          350,\n          550,\n          450\n        ],\n        [\n          400,\n          450,\n          550,\n          500\n        ]\n      ]\n    },\n    {\n      "label": "rocky hillside",\n      "attributes": [\n        "brown",\n        "dry",\n        "sloped"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        0,\n        300,\n        999,\n        950\n      ],\n      "relations": [\n        "background behind weather station"\n      ],\n      "bboxes_xyxy": [\n        [\n          0,\n          300,\n          999,\n          950\n        ]\n      ]\n    },\n    {\n      "label": "blue sky",\n      "attributes": [\n        "clear",\n        "no clouds"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        0,\n        0,\n        999,\n        300\n      ],\n      "relations": [\n        "')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "An outdoor weather station mounted on a metal pole, featuring a solar panel, anemometer, and sensor units, set against a backdrop of a rocky hillside and blue sky.",
+  "objects": [
+    {
+      "label": "weather station",
+      "attributes": {
+        "components": [
+          "solar panel",
+          "anemometer",
+          "sensor units"
+        ],
+        "mounting": "on a metal pole",
+        "location": "outdoors on a rocky hillside"
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        250,
+        50,
+        750,
+        950
+      ],
+      "relations": [],
+      "bboxes_xyxy": [
+        [
+          250,
+          50,
+          750,
+          950
+        ]
+      ]
+    },
+    {
+      "label": "solar panel",
+      "attributes": [
+        "rectangular",
+        "mounted on pole",
+        "angled"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        350,
+        200,
+        550,
+        350
+      ],
+      "relations": [
+        "attached to weather station pole"
+      ],
+      "bboxes_xyxy": [
+        [
+          350,
+          200,
+          550,
+          350
+        ]
+      ]
+    },
+    {
+      "label": "anemometer",
+      "attributes": [
+        "cylindrical",
+        "black",
+        "top of pole"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        500,
+        50,
+        650,
+        150
+      ],
+      "relations": [
+        "mounted on top of pole"
+      ],
+      "bboxes_xyxy": [
+        [
+          500,
+          50,
+          650,
+          150
+        ]
+      ]
+    },
+    {
+      "label": "sensor units",
+      "attributes": [
+        "cylindrical",
+        "white",
+        "mounted on pole"
+      ],
+      "count": 2,
+      "bbox_xyxy": [
+        400,
+        350,
+        550,
+        500
+      ],
+      "relations": [
+        "mounted on pole below solar panel"
+      ],
+      "bboxes_xyxy": [
+        [
+          400,
+          350,
+          550,
+          450
+        ],
+        [
+          400,
+          450,
+          550,
+          500
+        ]
+      ]
+    },
+    {
+      "label": "rocky hillside",
+      "attributes": [
+        "brown",
+        "dry",
+        "sloped"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        0,
+        300,
+        999,
+        950
+      ],
+      "relations": [
+        "background behind weather station"
+      ],
+      "bboxes_xyxy": [
+        [
+          0,
+          300,
+          999,
+          950
+        ]
+      ]
+    },
+    {
+      "label": "blue sky",
+      "attributes": [
+        "clear",
+        "no clouds"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        0,
+        0,
+        999,
+        300
+      ],
+      "relations": [
+        "
+[2025-12-23 09:52:36,284] INFO - >> [6/200] Start example=mmbench:5
+[2025-12-23 09:52:53,509] INFO - << example=mmbench:5 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 09:52:53,509] INFO - >> [7/200] Start example=mmbench:6
+[2025-12-23 09:53:06,497] INFO - << example=mmbench:6 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 09:53:06,497] INFO - >> [8/200] Start example=mmbench:7
+[2025-12-23 09:53:26,987] INFO - << example=mmbench:7 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 09:53:26,988] INFO - >> [9/200] Start example=mmbench:8
+[2025-12-23 09:55:33,654] WARNING - !! example=mmbench:8 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "A diagram illustrating the life cycle of an apple tree, showing stages from seedling to adult tree, with labeled parts including pollen, pistil, anther, fruit, and seeds.",\n  "objects": [\n    {\n      "label": "seedling",\n      "attributes": ["green leaves", "small plant"],\n      "count": 1,\n      "bbox_xyxy": [36, 120, 200, 320],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "adult tree",\n      "attributes": ["red apples", "green leaves", "blossoms"],\n      "count": 1,\n      "bbox_xyxy": [280, 120, 500, 320],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "fruit",\n      "attributes": ["red apple", "cut open to show seeds", "labeled \'seeds\'"],\n      "count": 1,\n      "bbox_xyxy": [36, 520, 200, 720],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "flower",\n      "attributes": ["pink petals", "labeled \'pistil\'", "labeled \'anther\'", "bee"],\n      "count": 2,\n      "bbox_xyxy": [280, 320, 500, 520],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "pollen",\n      "attributes": ["labeled \'pollen\'", "on flower"],\n      "count": 1,\n      "bbox_xyxy": [500, 120, 720, 320],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "seeds",\n      "attributes": ["labeled \'seeds\'", "inside fruit"],\n      "count": 1,\n      "bbox_xyxy": [100, 580, 150, 640],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "pistil",\n      "attributes": ["labeled \'pistil\'", "part of flower"],\n      "count": 1,\n      "bbox_xyxy": [500, 380, 600, 480],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "anther",\n      "attributes": ["labeled \'anther\'", "part of flower"],\n      "count": 1,\n      "bbox_xyxy": [500, 480, 600, 580],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "bee",\n      "attributes": ["yellow and black", "on flower"],\n      "count": 2,\n      "bbox_xyxy": [500, 200, 600, 300],\n      "relations": [],\n      "bboxes_xyxy": null\n    }\n  ],\n  "ocr_text_blocks": [\n    "seedling",\n    "adult tree",\n    "pollen",\n    "pistil",\n    "anther",\n    "fruit",\n    "seeds"\n  ],\n  "uncertainties": [],\n  "focus_suggestions": [\n    "The seeds inside the fruit are the part')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "A diagram illustrating the life cycle of an apple tree, showing stages from seedling to adult tree, with labeled parts including pollen, pistil, anther, fruit, and seeds.",
+  "objects": [
+    {
+      "label": "seedling",
+      "attributes": ["green leaves", "small plant"],
+      "count": 1,
+      "bbox_xyxy": [36, 120, 200, 320],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "adult tree",
+      "attributes": ["red apples", "green leaves", "blossoms"],
+      "count": 1,
+      "bbox_xyxy": [280, 120, 500, 320],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "fruit",
+      "attributes": ["red apple", "cut open to show seeds", "labeled 'seeds'"],
+      "count": 1,
+      "bbox_xyxy": [36, 520, 200, 720],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "flower",
+      "attributes": ["pink petals", "labeled 'pistil'", "labeled 'anther'", "bee"],
+      "count": 2,
+      "bbox_xyxy": [280, 320, 500, 520],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "pollen",
+      "attributes": ["labeled 'pollen'", "on flower"],
+      "count": 1,
+      "bbox_xyxy": [500, 120, 720, 320],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "seeds",
+      "attributes": ["labeled 'seeds'", "inside fruit"],
+      "count": 1,
+      "bbox_xyxy": [100, 580, 150, 640],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "pistil",
+      "attributes": ["labeled 'pistil'", "part of flower"],
+      "count": 1,
+      "bbox_xyxy": [500, 380, 600, 480],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "anther",
+      "attributes": ["labeled 'anther'", "part of flower"],
+      "count": 1,
+      "bbox_xyxy": [500, 480, 600, 580],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "bee",
+      "attributes": ["yellow and black", "on flower"],
+      "count": 2,
+      "bbox_xyxy": [500, 200, 600, 300],
+      "relations": [],
+      "bboxes_xyxy": null
+    }
+  ],
+  "ocr_text_blocks": [
+    "seedling",
+    "adult tree",
+    "pollen",
+    "pistil",
+    "anther",
+    "fruit",
+    "seeds"
+  ],
+  "uncertainties": [],
+  "focus_suggestions": [
+    "The seeds inside the fruit are the part
+[2025-12-23 09:55:33,655] INFO - >> [10/200] Start example=mmbench:9
+[2025-12-23 09:55:46,471] INFO - << example=mmbench:9 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 09:55:46,471] INFO - >> [11/200] Start example=mmbench:10
+[2025-12-23 09:55:55,931] INFO - << example=mmbench:10 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 09:55:55,931] INFO - >> [12/200] Start example=mmbench:11
+[2025-12-23 09:56:04,638] INFO - << example=mmbench:11 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 09:56:04,638] INFO - >> [13/200] Start example=mmbench:12
+[2025-12-23 09:56:12,142] INFO - << example=mmbench:12 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 09:56:12,142] INFO - >> [14/200] Start example=mmbench:13
+[2025-12-23 09:56:45,174] INFO - << example=mmbench:13 ok=True verdict=FAIL pred=B gt=B
+[2025-12-23 09:56:45,175] INFO - >> [15/200] Start example=mmbench:14
+[2025-12-23 09:57:02,055] INFO - << example=mmbench:14 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 09:57:02,056] INFO - >> [16/200] Start example=mmbench:15
+[2025-12-23 09:57:25,471] INFO - << example=mmbench:15 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 09:57:25,471] INFO - >> [17/200] Start example=mmbench:16
+[2025-12-23 09:58:21,222] INFO - << example=mmbench:16 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 09:58:21,223] INFO - >> [18/200] Start example=mmbench:17
+[2025-12-23 09:58:35,249] INFO - << example=mmbench:17 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 09:58:35,249] INFO - >> [19/200] Start example=mmbench:18
+[2025-12-23 09:58:58,831] INFO - << example=mmbench:18 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 09:58:58,832] INFO - >> [20/200] Start example=mmbench:19
+[2025-12-23 10:01:07,757] WARNING - !! example=mmbench:19 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "A timeline infographic showing key events from 1763 to 1777, with blue rectangular boxes containing event descriptions and year labels along a horizontal axis.",\n  "objects": [\n    {\n      "label": "Timeline box for 1763",\n      "attributes": {\n        "text": "The French and Indian War ends."\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        22,\n        100,\n        210,\n        250\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "Timeline box for 1770",\n      "attributes": {\n        "text": "British troops kill five colonists in an event that becomes known as the Boston Massacre."\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        320,\n        100,\n        510,\n        250\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "Timeline box for 1774",\n      "attributes": {\n        "text": "The First Continental Congress meets."\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        620,\n        100,\n        810,\n        250\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "Timeline box for 1765",\n      "attributes": {\n        "text": "The British Parliament passes the Stamp Act. Many Americans boycott British goods. New York and boycotts follow."\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        22,\n        500,\n        210,\n        650\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "Timeline box for 1773",\n      "attributes": {\n        "text": "Colonists protest the Tea Act with the \'Boston Tea Party.\'"\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        320,\n        500,\n        510,\n        650\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "Timeline box for 1775",\n      "attributes": {\n        "text": "The Revolutionary War begins when fighting breaks out at Lexington and Concord."\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        620,\n        500,\n        810,\n        650\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "Timeline line",\n      "attributes": {\n        "type": "horizontal line with tick marks"\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        22,\n        300,\n        810,\n        350\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    }\n  ],\n  "ocr_text_blocks": [\n    "1763",\n    "The French and Indian War ends.",\n    "1770",\n    "British troops kill five colonists in an event that becomes known as the Boston Massacre.",\n    "1774",\n    "The First Continental Congress meets.",\n    "1765",\n    "The British Parliament passes the Stamp Act. Many Americans boycott British goods.')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "A timeline infographic showing key events from 1763 to 1777, with blue rectangular boxes containing event descriptions and year labels along a horizontal axis.",
+  "objects": [
+    {
+      "label": "Timeline box for 1763",
+      "attributes": {
+        "text": "The French and Indian War ends."
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        22,
+        100,
+        210,
+        250
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "Timeline box for 1770",
+      "attributes": {
+        "text": "British troops kill five colonists in an event that becomes known as the Boston Massacre."
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        320,
+        100,
+        510,
+        250
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "Timeline box for 1774",
+      "attributes": {
+        "text": "The First Continental Congress meets."
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        620,
+        100,
+        810,
+        250
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "Timeline box for 1765",
+      "attributes": {
+        "text": "The British Parliament passes the Stamp Act. Many Americans boycott British goods. New York and boycotts follow."
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        22,
+        500,
+        210,
+        650
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "Timeline box for 1773",
+      "attributes": {
+        "text": "Colonists protest the Tea Act with the 'Boston Tea Party.'"
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        320,
+        500,
+        510,
+        650
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "Timeline box for 1775",
+      "attributes": {
+        "text": "The Revolutionary War begins when fighting breaks out at Lexington and Concord."
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        620,
+        500,
+        810,
+        650
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "Timeline line",
+      "attributes": {
+        "type": "horizontal line with tick marks"
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        22,
+        300,
+        810,
+        350
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    }
+  ],
+  "ocr_text_blocks": [
+    "1763",
+    "The French and Indian War ends.",
+    "1770",
+    "British troops kill five colonists in an event that becomes known as the Boston Massacre.",
+    "1774",
+    "The First Continental Congress meets.",
+    "1765",
+    "The British Parliament passes the Stamp Act. Many Americans boycott British goods.
+[2025-12-23 10:01:07,758] INFO - >> [21/200] Start example=mmbench:20
+[2025-12-23 10:01:16,646] INFO - << example=mmbench:20 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:01:16,647] INFO - >> [22/200] Start example=mmbench:21
+[2025-12-23 10:01:27,476] INFO - << example=mmbench:21 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:01:27,477] INFO - >> [23/200] Start example=mmbench:22
+[2025-12-23 10:02:04,207] INFO - << example=mmbench:22 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:02:04,207] INFO - >> [24/200] Start example=mmbench:23
+[2025-12-23 10:02:23,112] INFO - << example=mmbench:23 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:02:23,112] INFO - >> [25/200] Start example=mmbench:24
+[2025-12-23 10:02:40,321] INFO - << example=mmbench:24 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:02:40,321] INFO - >> [26/200] Start example=mmbench:25
+[2025-12-23 10:03:17,989] INFO - << example=mmbench:25 ok=False verdict=FAIL pred=A gt=B
+[2025-12-23 10:03:17,989] INFO - >> [27/200] Start example=mmbench:26
+[2025-12-23 10:03:29,410] INFO - << example=mmbench:26 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:03:29,410] INFO - >> [28/200] Start example=mmbench:27
+[2025-12-23 10:03:55,838] INFO - << example=mmbench:27 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:03:55,838] INFO - >> [29/200] Start example=mmbench:28
+[2025-12-23 10:06:04,196] WARNING - !! example=mmbench:28 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "objects": [\n    {\n      "label": "timeline event box 1",\n      "attributes": {\n        "text": "James Marshall discovers gold in Coloma, California.",\n        "color": "purple",\n        "shape": "rectangle"\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        20,\n        500,\n        200,\n        700\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "timeline event box 2",\n      "attributes": {\n        "text": "Many people move to California to search for gold.",\n        "color": "purple",\n        "shape": "rectangle"\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        200,\n        100,\n        380,\n        300\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "timeline event box 3",\n      "attributes": {\n        "text": "California\'s population grows past 300,000.",\n        "color": "purple",\n        "shape": "rectangle"\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        400,\n        100,\n        580,\n        300\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "timeline event box 4",\n      "attributes": {\n        "text": "Gold becomes harder to find in California.",\n        "color": "purple",\n        "shape": "rectangle"\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        200,\n        400,\n        380,\n        600\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "timeline event box 5",\n      "attributes": {\n        "text": "Silver is discovered in Nevada, helping end the California Gold Rush.",\n        "color": "purple",\n        "shape": "rectangle"\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        600,\n        500,\n        780,\n        700\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "timeline year markers",\n      "attributes": {\n        "text": "1848",\n        "color": "black",\n        "shape": "text"\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        20,\n        800,\n        100,\n        900\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "timeline year markers",\n      "attributes": {\n        "text": "1859",\n        "color": "black",\n        "shape": "text"\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        700,\n        800,\n        800,\n        900\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    }\n  ],\n  "ocr_text_blocks": [\n    "James Marshall discovers gold in Coloma, California.",\n    "Many people move to California to search for gold.",\n    "California\'s population grows past 300,000.",\n    "Gold becomes harder to find in California.",\n    "Silver is discovered in Nevada, helping end the')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "objects": [
+    {
+      "label": "timeline event box 1",
+      "attributes": {
+        "text": "James Marshall discovers gold in Coloma, California.",
+        "color": "purple",
+        "shape": "rectangle"
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        20,
+        500,
+        200,
+        700
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "timeline event box 2",
+      "attributes": {
+        "text": "Many people move to California to search for gold.",
+        "color": "purple",
+        "shape": "rectangle"
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        200,
+        100,
+        380,
+        300
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "timeline event box 3",
+      "attributes": {
+        "text": "California's population grows past 300,000.",
+        "color": "purple",
+        "shape": "rectangle"
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        400,
+        100,
+        580,
+        300
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "timeline event box 4",
+      "attributes": {
+        "text": "Gold becomes harder to find in California.",
+        "color": "purple",
+        "shape": "rectangle"
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        200,
+        400,
+        380,
+        600
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "timeline event box 5",
+      "attributes": {
+        "text": "Silver is discovered in Nevada, helping end the California Gold Rush.",
+        "color": "purple",
+        "shape": "rectangle"
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        600,
+        500,
+        780,
+        700
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "timeline year markers",
+      "attributes": {
+        "text": "1848",
+        "color": "black",
+        "shape": "text"
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        20,
+        800,
+        100,
+        900
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "timeline year markers",
+      "attributes": {
+        "text": "1859",
+        "color": "black",
+        "shape": "text"
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        700,
+        800,
+        800,
+        900
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    }
+  ],
+  "ocr_text_blocks": [
+    "James Marshall discovers gold in Coloma, California.",
+    "Many people move to California to search for gold.",
+    "California's population grows past 300,000.",
+    "Gold becomes harder to find in California.",
+    "Silver is discovered in Nevada, helping end the
+[2025-12-23 10:06:04,197] INFO - >> [30/200] Start example=mmbench:29
+[2025-12-23 10:06:35,726] INFO - << example=mmbench:29 ok=False verdict=FAIL pred=A gt=B
+[2025-12-23 10:06:35,726] INFO - >> [31/200] Start example=mmbench:30
+[2025-12-23 10:06:58,189] INFO - << example=mmbench:30 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:06:58,189] INFO - >> [32/200] Start example=mmbench:31
+[2025-12-23 10:09:10,161] WARNING - !! example=mmbench:31 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "A horizontal timeline from 4500 B.C. to 1500 A.D. with green rectangular boxes above and below it, each labeled with a sport and its origin location, connected by arrows.",\n  "objects": [\n    {\n      "label": "timeline",\n      "attributes": {\n        "orientation": "horizontal",\n        "text": "4500 B.C. — 1500 A.D."\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        0,\n        300,\n        999,\n        400\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "timeline marker for 4500 B.C.",\n      "attributes": {\n        "text": "4500 B.C.",\n        "position": "left end of timeline"\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        0,\n        300,\n        100,\n        400\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "timeline marker for 1500 A.D.",\n      "attributes": {\n        "text": "1500 A.D.",\n        "position": "right end of timeline"\n      },\n      "count": 1,\n      "bbox_xyxy": [\n        800,\n        300,\n        900,\n        400\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "horse racing box",\n      "attributes": [\n        "green background",\n        "text: horse racing (Central Asia)"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        0,\n        0,\n        200,\n        200\n      ],\n      "relations": [\n        "connected to 4500 B.C. marker by a downward arrow"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "bowling box",\n      "attributes": [\n        "green background",\n        "text: bowling (Egypt)"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        200,\n        400,\n        400,\n        600\n      ],\n      "relations": [\n        "positioned between 4500 B.C. and 1500 A.D. markers",\n        "connected to timeline by upward arrow"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "polo box",\n      "attributes": [\n        "green background",\n        "text: polo (Iran)"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        400,\n        600,\n        600,\n        800\n      ],\n      "relations": [\n        "positioned between 4500 B.C. and 1500 A.D. markers",\n        "connected to timeline by upward arrow"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "sumo wrestling box",\n      "attributes": [\n        "green background",\n        "text: sumo wrestling (Japan)"\n      ],\n      "count": 1,\n      "bbox_xyxy": [\n        500,\n        400,\n        700,\n        600\n      ],\n      "relations": [\n        "positioned between 4500 B.C. and')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "A horizontal timeline from 4500 B.C. to 1500 A.D. with green rectangular boxes above and below it, each labeled with a sport and its origin location, connected by arrows.",
+  "objects": [
+    {
+      "label": "timeline",
+      "attributes": {
+        "orientation": "horizontal",
+        "text": "4500 B.C. — 1500 A.D."
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        0,
+        300,
+        999,
+        400
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "timeline marker for 4500 B.C.",
+      "attributes": {
+        "text": "4500 B.C.",
+        "position": "left end of timeline"
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        0,
+        300,
+        100,
+        400
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "timeline marker for 1500 A.D.",
+      "attributes": {
+        "text": "1500 A.D.",
+        "position": "right end of timeline"
+      },
+      "count": 1,
+      "bbox_xyxy": [
+        800,
+        300,
+        900,
+        400
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "horse racing box",
+      "attributes": [
+        "green background",
+        "text: horse racing (Central Asia)"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        0,
+        0,
+        200,
+        200
+      ],
+      "relations": [
+        "connected to 4500 B.C. marker by a downward arrow"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "bowling box",
+      "attributes": [
+        "green background",
+        "text: bowling (Egypt)"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        200,
+        400,
+        400,
+        600
+      ],
+      "relations": [
+        "positioned between 4500 B.C. and 1500 A.D. markers",
+        "connected to timeline by upward arrow"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "polo box",
+      "attributes": [
+        "green background",
+        "text: polo (Iran)"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        400,
+        600,
+        600,
+        800
+      ],
+      "relations": [
+        "positioned between 4500 B.C. and 1500 A.D. markers",
+        "connected to timeline by upward arrow"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "sumo wrestling box",
+      "attributes": [
+        "green background",
+        "text: sumo wrestling (Japan)"
+      ],
+      "count": 1,
+      "bbox_xyxy": [
+        500,
+        400,
+        700,
+        600
+      ],
+      "relations": [
+        "positioned between 4500 B.C. and
+[2025-12-23 10:09:10,162] INFO - >> [33/200] Start example=mmbench:32
+[2025-12-23 10:09:22,466] INFO - << example=mmbench:32 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:09:22,467] INFO - >> [34/200] Start example=mmbench:33
+[2025-12-23 10:09:36,875] INFO - << example=mmbench:33 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:09:36,875] INFO - >> [35/200] Start example=mmbench:34
+[2025-12-23 10:09:45,276] INFO - << example=mmbench:34 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:09:45,277] INFO - >> [36/200] Start example=mmbench:35
+[2025-12-23 10:09:59,587] INFO - << example=mmbench:35 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:09:59,587] INFO - >> [37/200] Start example=mmbench:36
+[2025-12-23 10:10:05,667] INFO - << example=mmbench:36 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:10:05,667] INFO - >> [38/200] Start example=mmbench:37
+[2025-12-23 10:10:26,950] INFO - << example=mmbench:37 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:10:26,950] INFO - >> [39/200] Start example=mmbench:38
+[2025-12-23 10:10:39,451] INFO - << example=mmbench:38 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:10:39,452] INFO - >> [40/200] Start example=mmbench:39
+[2025-12-23 10:10:59,775] INFO - << example=mmbench:39 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:10:59,776] INFO - >> [41/200] Start example=mmbench:40
+[2025-12-23 10:11:13,034] INFO - << example=mmbench:40 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:11:13,034] INFO - >> [42/200] Start example=mmbench:41
+[2025-12-23 10:11:30,939] INFO - << example=mmbench:41 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:11:30,939] INFO - >> [43/200] Start example=mmbench:42
+[2025-12-23 10:11:47,956] INFO - << example=mmbench:42 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:11:47,956] INFO - >> [44/200] Start example=mmbench:43
+[2025-12-23 10:12:15,679] INFO - << example=mmbench:43 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:12:15,679] INFO - >> [45/200] Start example=mmbench:44
+[2025-12-23 10:12:35,469] INFO - << example=mmbench:44 ok=False verdict=FAIL pred=A gt=B
+[2025-12-23 10:12:35,470] INFO - >> [46/200] Start example=mmbench:45
+[2025-12-23 10:12:57,354] INFO - << example=mmbench:45 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:12:57,354] INFO - >> [47/200] Start example=mmbench:46
+[2025-12-23 10:13:06,290] INFO - << example=mmbench:46 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:13:06,290] INFO - >> [48/200] Start example=mmbench:47
+[2025-12-23 10:13:24,849] INFO - << example=mmbench:47 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:13:24,850] INFO - >> [49/200] Start example=mmbench:48
+[2025-12-23 10:13:37,188] INFO - << example=mmbench:48 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:13:37,189] INFO - >> [50/200] Start example=mmbench:49
+[2025-12-23 10:13:57,923] INFO - << example=mmbench:49 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:13:57,923] INFO - >> [51/200] Start example=mmbench:50
+[2025-12-23 10:14:40,177] INFO - << example=mmbench:50 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:14:40,178] INFO - >> [52/200] Start example=mmbench:51
+[2025-12-23 10:14:48,768] INFO - << example=mmbench:51 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:14:48,769] INFO - >> [53/200] Start example=mmbench:52
+[2025-12-23 10:15:22,084] INFO - << example=mmbench:52 ok=False verdict=FAIL pred=A gt=B
+[2025-12-23 10:15:22,084] INFO - >> [54/200] Start example=mmbench:53
+[2025-12-23 10:15:38,343] INFO - << example=mmbench:53 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:15:38,343] INFO - >> [55/200] Start example=mmbench:54
+[2025-12-23 10:15:46,539] INFO - << example=mmbench:54 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:15:46,539] INFO - >> [56/200] Start example=mmbench:55
+[2025-12-23 10:16:13,418] INFO - << example=mmbench:55 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:16:13,418] INFO - >> [57/200] Start example=mmbench:56
+[2025-12-23 10:16:34,755] INFO - << example=mmbench:56 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:16:34,755] INFO - >> [58/200] Start example=mmbench:57
+[2025-12-23 10:17:01,351] INFO - << example=mmbench:57 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:17:01,352] INFO - >> [59/200] Start example=mmbench:58
+[2025-12-23 10:17:34,107] INFO - << example=mmbench:58 ok=False verdict=FAIL pred=B gt=A
+[2025-12-23 10:17:34,108] INFO - >> [60/200] Start example=mmbench:59
+[2025-12-23 10:17:46,194] INFO - << example=mmbench:59 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:17:46,195] INFO - >> [61/200] Start example=mmbench:60
+[2025-12-23 10:18:05,670] INFO - << example=mmbench:60 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:18:05,670] INFO - >> [62/200] Start example=mmbench:61
+[2025-12-23 10:18:23,477] INFO - << example=mmbench:61 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:18:23,477] INFO - >> [63/200] Start example=mmbench:62
+[2025-12-23 10:18:38,235] INFO - << example=mmbench:62 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:18:38,236] INFO - >> [64/200] Start example=mmbench:63
+[2025-12-23 10:19:02,385] INFO - << example=mmbench:63 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:19:02,386] INFO - >> [65/200] Start example=mmbench:64
+[2025-12-23 10:19:15,530] INFO - << example=mmbench:64 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:19:15,531] INFO - >> [66/200] Start example=mmbench:65
+[2025-12-23 10:19:31,417] INFO - << example=mmbench:65 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:19:31,417] INFO - >> [67/200] Start example=mmbench:66
+[2025-12-23 10:19:47,894] INFO - << example=mmbench:66 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:19:47,895] INFO - >> [68/200] Start example=mmbench:67
+[2025-12-23 10:20:30,362] INFO - << example=mmbench:67 ok=False verdict=FAIL pred=B gt=A
+[2025-12-23 10:20:30,363] INFO - >> [69/200] Start example=mmbench:68
+[2025-12-23 10:20:44,269] INFO - << example=mmbench:68 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:20:44,269] INFO - >> [70/200] Start example=mmbench:69
+[2025-12-23 10:21:07,860] INFO - << example=mmbench:69 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:21:07,861] INFO - >> [71/200] Start example=mmbench:70
+[2025-12-23 10:21:22,126] INFO - << example=mmbench:70 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:21:22,127] INFO - >> [72/200] Start example=mmbench:71
+[2025-12-23 10:21:46,588] INFO - << example=mmbench:71 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:21:46,589] INFO - >> [73/200] Start example=mmbench:72
+[2025-12-23 10:22:17,240] INFO - << example=mmbench:72 ok=False verdict=FAIL pred=B gt=A
+[2025-12-23 10:22:17,240] INFO - >> [74/200] Start example=mmbench:73
+[2025-12-23 10:22:40,345] INFO - << example=mmbench:73 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:22:40,345] INFO - >> [75/200] Start example=mmbench:74
+[2025-12-23 10:22:57,842] INFO - << example=mmbench:74 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:22:57,842] INFO - >> [76/200] Start example=mmbench:75
+[2025-12-23 10:23:11,484] INFO - << example=mmbench:75 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:23:11,484] INFO - >> [77/200] Start example=mmbench:76
+[2025-12-23 10:23:26,589] INFO - << example=mmbench:76 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:23:26,589] INFO - >> [78/200] Start example=mmbench:77
+[2025-12-23 10:23:45,757] INFO - << example=mmbench:77 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:23:45,757] INFO - >> [79/200] Start example=mmbench:78
+[2025-12-23 10:23:58,869] INFO - << example=mmbench:78 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:23:58,869] INFO - >> [80/200] Start example=mmbench:79
+[2025-12-23 10:24:12,301] INFO - << example=mmbench:79 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:24:12,301] INFO - >> [81/200] Start example=mmbench:80
+[2025-12-23 10:24:23,864] INFO - << example=mmbench:80 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:24:23,864] INFO - >> [82/200] Start example=mmbench:81
+[2025-12-23 10:24:45,377] INFO - << example=mmbench:81 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:24:45,377] INFO - >> [83/200] Start example=mmbench:82
+[2025-12-23 10:24:59,929] INFO - << example=mmbench:82 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:24:59,929] INFO - >> [84/200] Start example=mmbench:83
+[2025-12-23 10:25:17,633] INFO - << example=mmbench:83 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:25:17,634] INFO - >> [85/200] Start example=mmbench:84
+[2025-12-23 10:25:38,120] INFO - << example=mmbench:84 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:25:38,121] INFO - >> [86/200] Start example=mmbench:85
+[2025-12-23 10:25:50,857] INFO - << example=mmbench:85 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:25:50,858] INFO - >> [87/200] Start example=mmbench:86
+[2025-12-23 10:26:16,534] INFO - << example=mmbench:86 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:26:16,534] INFO - >> [88/200] Start example=mmbench:87
+[2025-12-23 10:26:29,628] INFO - << example=mmbench:87 ok=True verdict=PASS pred=B gt=B
+[2025-12-23 10:26:29,628] INFO - >> [89/200] Start example=mmbench:88
+[2025-12-23 10:26:47,602] INFO - << example=mmbench:88 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:26:47,602] INFO - >> [90/200] Start example=mmbench:89
+[2025-12-23 10:27:10,908] INFO - << example=mmbench:89 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:27:10,908] INFO - >> [91/200] Start example=mmbench:90
+[2025-12-23 10:27:29,400] INFO - << example=mmbench:90 ok=True verdict=PASS pred=A gt=A
+[2025-12-23 10:27:29,400] INFO - >> [92/200] Start example=mmbench:91
+[2025-12-23 10:29:43,281] WARNING - !! example=mmbench:91 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "Two pairs of circular magnets are shown side by side. Each magnet is divided into two colored halves, labeled \'N\' for North and \'S\' for South. The distance between the centers of the magnets in each pair is marked as 28 mm. In Pair 1, the South pole of the left magnet faces the North pole of the right magnet. In Pair 2, the North pole of the left magnet faces the South pole of the right magnet.",\n  "objects": [\n    {\n      "label": "Pair 1 left magnet",\n      "attributes": {\n        "shape": "circle",\n        "color": ["orange", "blue"],\n        "pole_labels": ["N", "S"],\n        "orientation": "left half orange (N), right half blue (S)"\n      },\n      "count": 1,\n      "bbox_xyxy": [100, 100, 300, 300],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "Pair 1 right magnet",\n      "attributes": {\n        "shape": "circle",\n        "color": ["blue", "orange"],\n        "pole_labels": ["S", "N"],\n        "orientation": "left half blue (S), right half orange (N)"\n      },\n      "count": 1,\n      "bbox_xyxy": [320, 100, 520, 300],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "Pair 2 left magnet",\n      "attributes": {\n        "shape": "circle",\n        "color": ["blue", "orange"],\n        "pole_labels": ["S", "N"],\n        "orientation": "left half blue (S), right half orange (N)"\n      },\n      "count": 1,\n      "bbox_xyxy": [600, 100, 800, 300],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "Pair 2 right magnet",\n      "attributes": {\n        "shape": "circle",\n        "color": ["orange", "blue"],\n        "pole_labels": ["N", "S"],\n        "orientation": "left half orange (N), right half blue (S)"\n      },\n      "count": 1,\n      "bbox_xyxy": [820, 100, 1020, 300],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "distance label for Pair 1",\n      "attributes": {\n        "text": "— 28 mm —"\n      },\n      "count": 1,\n      "bbox_xyxy": [200, 350, 400, 400],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "distance label for Pair 2",\n      "attributes": {\n        "text": "— 28 mm —"\n      },\n      "count": 1,\n      "bbox_xyxy": [850, 350, 1050, 400],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "Pair 1 label",\n      "attributes": {\n        "text": "Pair 1"\n      },\n      "count": 1,\n      "bbox_xyxy": [150, 50, 250, 100],\n      "relations": [],\n      "bboxes_xyxy":')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "Two pairs of circular magnets are shown side by side. Each magnet is divided into two colored halves, labeled 'N' for North and 'S' for South. The distance between the centers of the magnets in each pair is marked as 28 mm. In Pair 1, the South pole of the left magnet faces the North pole of the right magnet. In Pair 2, the North pole of the left magnet faces the South pole of the right magnet.",
+  "objects": [
+    {
+      "label": "Pair 1 left magnet",
+      "attributes": {
+        "shape": "circle",
+        "color": ["orange", "blue"],
+        "pole_labels": ["N", "S"],
+        "orientation": "left half orange (N), right half blue (S)"
+      },
+      "count": 1,
+      "bbox_xyxy": [100, 100, 300, 300],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "Pair 1 right magnet",
+      "attributes": {
+        "shape": "circle",
+        "color": ["blue", "orange"],
+        "pole_labels": ["S", "N"],
+        "orientation": "left half blue (S), right half orange (N)"
+      },
+      "count": 1,
+      "bbox_xyxy": [320, 100, 520, 300],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "Pair 2 left magnet",
+      "attributes": {
+        "shape": "circle",
+        "color": ["blue", "orange"],
+        "pole_labels": ["S", "N"],
+        "orientation": "left half blue (S), right half orange (N)"
+      },
+      "count": 1,
+      "bbox_xyxy": [600, 100, 800, 300],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "Pair 2 right magnet",
+      "attributes": {
+        "shape": "circle",
+        "color": ["orange", "blue"],
+        "pole_labels": ["N", "S"],
+        "orientation": "left half orange (N), right half blue (S)"
+      },
+      "count": 1,
+      "bbox_xyxy": [820, 100, 1020, 300],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "distance label for Pair 1",
+      "attributes": {
+        "text": "— 28 mm —"
+      },
+      "count": 1,
+      "bbox_xyxy": [200, 350, 400, 400],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "distance label for Pair 2",
+      "attributes": {
+        "text": "— 28 mm —"
+      },
+      "count": 1,
+      "bbox_xyxy": [850, 350, 1050, 400],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "Pair 1 label",
+      "attributes": {
+        "text": "Pair 1"
+      },
+      "count": 1,
+      "bbox_xyxy": [150, 50, 250, 100],
+      "relations": [],
+      "bboxes_xyxy":
+[2025-12-23 10:29:43,282] INFO - >> [93/200] Start example=mmbench:92

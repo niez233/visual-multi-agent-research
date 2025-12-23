@@ -6,7 +6,7 @@ dataset:
   limit: 200
 
 model:
-  name: "Qwen/Qwen2.5-VL-7B-Instruct"
+  name: "Qwen/Qwen3-VL-8B-Instruct"
   device_map: "auto"
   torch_dtype: "auto"
   max_image_pixels: null

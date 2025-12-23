@@ -1,0 +1,1335 @@
+[2025-12-23 09:46:42,183] INFO - ============================================================
+[2025-12-23 09:46:42,184] INFO - Run Config
+[2025-12-23 09:46:42,184] INFO - Config file: config/mme_local.yaml
+[2025-12-23 09:46:42,184] INFO - dataset: {'out_root': './datasets_out', 'hf_endpoint': None, 'dataset_id': 'lmms-lab/MME', 'split': 'test', 'limit': 200}
+[2025-12-23 09:46:42,184] INFO - model: {'name': 'Qwen/Qwen3-VL-8B-Instruct', 'device_map': 'auto', 'torch_dtype': 'auto', 'max_image_pixels': None, 'use_fast_processor': None}
+[2025-12-23 09:46:42,184] INFO - generation: {'max_tokens': 800, 'temperature': 0.2, 'no_retry': False, 'retry_accept_policy': 'never'}
+[2025-12-23 09:46:42,184] INFO - mme: {'use_choice_extractor': False}
+[2025-12-23 09:46:42,184] INFO - _config_path: config/mme_local.yaml
+[2025-12-23 09:46:42,184] INFO - ============================================================
+[2025-12-23 09:46:42,184] INFO - Dataset prepared: datasets_out/mme/lmms-lab_MME__test__limit200/data.jsonl
+[2025-12-23 09:46:42,186] INFO - Resume disabled: pending=200
+[2025-12-23 09:47:10,769] INFO - >> [1/200] Start example=mme:0
+[2025-12-23 09:47:22,617] INFO - << example=mme:0 ok=False verdict=FAIL pred=no gt=Yes
+[2025-12-23 09:47:22,617] INFO - >> [2/200] Start example=mme:1
+[2025-12-23 09:47:30,336] INFO - << example=mme:1 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 09:47:30,336] INFO - >> [3/200] Start example=mme:2
+[2025-12-23 09:47:45,022] INFO - << example=mme:2 ok=False verdict=FAIL pred=no gt=Yes
+[2025-12-23 09:47:45,022] INFO - >> [4/200] Start example=mme:3
+[2025-12-23 09:47:57,968] INFO - << example=mme:3 ok=False verdict=FAIL pred=yes gt=No
+[2025-12-23 09:47:57,968] INFO - >> [5/200] Start example=mme:4
+[2025-12-23 09:48:12,884] INFO - << example=mme:4 ok=False verdict=FAIL pred=no gt=Yes
+[2025-12-23 09:48:12,884] INFO - >> [6/200] Start example=mme:5
+[2025-12-23 09:48:23,387] INFO - << example=mme:5 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 09:48:23,388] INFO - >> [7/200] Start example=mme:6
+[2025-12-23 09:48:33,208] INFO - << example=mme:6 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:48:33,208] INFO - >> [8/200] Start example=mme:7
+[2025-12-23 09:48:47,872] INFO - << example=mme:7 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 09:48:47,872] INFO - >> [9/200] Start example=mme:8
+[2025-12-23 09:48:57,624] INFO - << example=mme:8 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:48:57,625] INFO - >> [10/200] Start example=mme:9
+[2025-12-23 09:49:10,853] INFO - << example=mme:9 ok=False verdict=FAIL pred=yes gt=No
+[2025-12-23 09:49:10,854] INFO - >> [11/200] Start example=mme:10
+[2025-12-23 09:49:22,054] INFO - << example=mme:10 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:49:22,054] INFO - >> [12/200] Start example=mme:11
+[2025-12-23 09:49:33,047] INFO - << example=mme:11 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 09:49:33,047] INFO - >> [13/200] Start example=mme:12
+[2025-12-23 09:49:49,807] INFO - << example=mme:12 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:49:49,808] INFO - >> [14/200] Start example=mme:13
+[2025-12-23 09:50:02,341] INFO - << example=mme:13 ok=False verdict=FAIL pred=yes gt=No
+[2025-12-23 09:50:02,342] INFO - >> [15/200] Start example=mme:14
+[2025-12-23 09:50:13,229] INFO - << example=mme:14 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:50:13,230] INFO - >> [16/200] Start example=mme:15
+[2025-12-23 09:50:25,868] INFO - << example=mme:15 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 09:50:25,869] INFO - >> [17/200] Start example=mme:16
+[2025-12-23 09:50:36,323] INFO - << example=mme:16 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:50:36,323] INFO - >> [18/200] Start example=mme:17
+[2025-12-23 09:50:46,497] INFO - << example=mme:17 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 09:50:46,497] INFO - >> [19/200] Start example=mme:18
+[2025-12-23 09:50:56,868] INFO - << example=mme:18 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:50:56,868] INFO - >> [20/200] Start example=mme:19
+[2025-12-23 09:51:06,493] INFO - << example=mme:19 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 09:51:06,493] INFO - >> [21/200] Start example=mme:20
+[2025-12-23 09:51:16,594] INFO - << example=mme:20 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:51:16,594] INFO - >> [22/200] Start example=mme:21
+[2025-12-23 09:51:26,836] INFO - << example=mme:21 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 09:51:26,836] INFO - >> [23/200] Start example=mme:22
+[2025-12-23 09:51:43,657] INFO - << example=mme:22 ok=False verdict=FAIL pred=no gt=Yes
+[2025-12-23 09:51:43,658] INFO - >> [24/200] Start example=mme:23
+[2025-12-23 09:52:11,755] INFO - << example=mme:23 ok=False verdict=FAIL pred=yes gt=No
+[2025-12-23 09:52:11,755] INFO - >> [25/200] Start example=mme:24
+[2025-12-23 09:52:22,104] INFO - << example=mme:24 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:52:22,105] INFO - >> [26/200] Start example=mme:25
+[2025-12-23 09:52:34,216] INFO - << example=mme:25 ok=False verdict=FAIL pred=yes gt=No
+[2025-12-23 09:52:34,217] INFO - >> [27/200] Start example=mme:26
+[2025-12-23 09:52:44,337] INFO - << example=mme:26 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:52:44,337] INFO - >> [28/200] Start example=mme:27
+[2025-12-23 09:52:53,657] INFO - << example=mme:27 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 09:52:53,658] INFO - >> [29/200] Start example=mme:28
+[2025-12-23 09:53:05,884] INFO - << example=mme:28 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:53:05,884] INFO - >> [30/200] Start example=mme:29
+[2025-12-23 09:53:16,689] INFO - << example=mme:29 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 09:53:16,689] INFO - >> [31/200] Start example=mme:30
+[2025-12-23 09:53:32,152] INFO - << example=mme:30 ok=False verdict=FAIL pred=no gt=Yes
+[2025-12-23 09:53:32,152] INFO - >> [32/200] Start example=mme:31
+[2025-12-23 09:53:46,366] INFO - << example=mme:31 ok=False verdict=FAIL pred=yes gt=No
+[2025-12-23 09:53:46,367] INFO - >> [33/200] Start example=mme:32
+[2025-12-23 09:53:55,797] INFO - << example=mme:32 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:53:55,797] INFO - >> [34/200] Start example=mme:33
+[2025-12-23 09:54:08,475] INFO - << example=mme:33 ok=False verdict=FAIL pred=yes gt=No
+[2025-12-23 09:54:08,475] INFO - >> [35/200] Start example=mme:34
+[2025-12-23 09:54:25,862] INFO - << example=mme:34 ok=False verdict=FAIL pred=no gt=Yes
+[2025-12-23 09:54:25,862] INFO - >> [36/200] Start example=mme:35
+[2025-12-23 09:54:37,007] INFO - << example=mme:35 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 09:54:37,007] INFO - >> [37/200] Start example=mme:36
+[2025-12-23 09:54:48,772] INFO - << example=mme:36 ok=False verdict=FAIL pred=no gt=Yes
+[2025-12-23 09:54:48,773] INFO - >> [38/200] Start example=mme:37
+[2025-12-23 09:54:59,213] INFO - << example=mme:37 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 09:54:59,213] INFO - >> [39/200] Start example=mme:38
+[2025-12-23 09:55:09,404] INFO - << example=mme:38 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:55:09,405] INFO - >> [40/200] Start example=mme:39
+[2025-12-23 09:55:26,838] INFO - << example=mme:39 ok=False verdict=FAIL pred=yes gt=No
+[2025-12-23 09:55:26,839] INFO - >> [41/200] Start example=mme:40
+[2025-12-23 09:55:53,270] INFO - << example=mme:40 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 09:55:53,270] INFO - >> [42/200] Start example=mme:41
+[2025-12-23 09:56:23,800] INFO - << example=mme:41 ok=False verdict=FAIL pred=yes gt=No
+[2025-12-23 09:56:23,801] INFO - >> [43/200] Start example=mme:42
+[2025-12-23 09:58:33,100] WARNING - !! example=mme:42 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "A religious painting depicting the Virgin Mary holding the Christ child, surrounded by several female figures in ornate medieval clothing. The setting is an architectural courtyard with arched walkways and distant landscape. The figures are arranged in a semi-circle around the central figures, with some kneeling and others standing.",\n  "objects": [\n    {\n      "label": "Virgin Mary",\n      "attributes": {\n        "clothing": ["black robe", "white veil"],\n        "action": ["holding infant"]\n      },\n      "count": 1,\n      "bbox_xyxy": [397, 343, 625, 847],\n      "relations": [\n        "holding the Christ child",\n        "surrounded by saints",\n        "center of composition"\n      ],\n      "bboxes_xyxy": [\n        [397, 343, 625, 847]\n      ]\n    },\n    {\n      "label": "Christ child",\n      "attributes": {\n        "clothing": ["white garment"],\n        "action": ["being held", "reaching out"]\n      },\n      "count": 1,\n      "bbox_xyxy": [348, 553, 540, 671],\n      "relations": [\n        "held by Virgin Mary",\n        "reaching toward kneeling figures"\n      ],\n      "bboxes_xyxy": [\n        [348, 553, 540, 671]\n      ]\n    },\n    {\n      "label": "Saint Catherine",\n      "attributes": {\n        "clothing": ["red robe", "gold trim"],\n        "action": ["kneeling", "reaching toward child"]\n      },\n      "count": 1,\n      "bbox_xyxy": [527, 457, 852, 974],\n      "relations": [\n        "kneeling to the right of Virgin Mary",\n        "reaching toward Christ child"\n      ],\n      "bboxes_xyxy": [\n        [527, 457, 852, 974]\n      ]\n    },\n    {\n      "label": "Saint Cecilia",\n      "attributes": {\n        "clothing": ["blue and white dress", "black veil"],\n        "action": ["kneeling", "holding book"]\n      },\n      "count": 1,\n      "bbox_xyxy": [220, 302, 447, 671],\n      "relations": [\n        "kneeling to left of Virgin Mary",\n        "holding a book"\n      ],\n      "bboxes_xyxy": [\n        [220, 302, 447, 671]\n      ]\n    },\n    {\n      "label": "Saint Barbara",\n      "attributes": {\n        "clothing": ["red robe", "gold trim"],\n        "action": ["standing", "holding book"]\n      },\n      "count": 1,\n      "bbox_xyxy": [597, 278, 775, 608],\n      "relations": [\n        "standing behind Virgin Mary",\n        "holding a book"\n      ],\n      "bboxes_xyxy": [\n        [597, 278, 775, 608]\n      ]\n    },\n    {\n      "label": "Saint Ursula",\n      "attributes": {\n        "clothing": ["red robe", "gold trim"],\n        "action": ["standing", "holding book"]\n      },\n      "count": 1,\n      "bbox_xyxy": [788, 283, 997,')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "A religious painting depicting the Virgin Mary holding the Christ child, surrounded by several female figures in ornate medieval clothing. The setting is an architectural courtyard with arched walkways and distant landscape. The figures are arranged in a semi-circle around the central figures, with some kneeling and others standing.",
+  "objects": [
+    {
+      "label": "Virgin Mary",
+      "attributes": {
+        "clothing": ["black robe", "white veil"],
+        "action": ["holding infant"]
+      },
+      "count": 1,
+      "bbox_xyxy": [397, 343, 625, 847],
+      "relations": [
+        "holding the Christ child",
+        "surrounded by saints",
+        "center of composition"
+      ],
+      "bboxes_xyxy": [
+        [397, 343, 625, 847]
+      ]
+    },
+    {
+      "label": "Christ child",
+      "attributes": {
+        "clothing": ["white garment"],
+        "action": ["being held", "reaching out"]
+      },
+      "count": 1,
+      "bbox_xyxy": [348, 553, 540, 671],
+      "relations": [
+        "held by Virgin Mary",
+        "reaching toward kneeling figures"
+      ],
+      "bboxes_xyxy": [
+        [348, 553, 540, 671]
+      ]
+    },
+    {
+      "label": "Saint Catherine",
+      "attributes": {
+        "clothing": ["red robe", "gold trim"],
+        "action": ["kneeling", "reaching toward child"]
+      },
+      "count": 1,
+      "bbox_xyxy": [527, 457, 852, 974],
+      "relations": [
+        "kneeling to the right of Virgin Mary",
+        "reaching toward Christ child"
+      ],
+      "bboxes_xyxy": [
+        [527, 457, 852, 974]
+      ]
+    },
+    {
+      "label": "Saint Cecilia",
+      "attributes": {
+        "clothing": ["blue and white dress", "black veil"],
+        "action": ["kneeling", "holding book"]
+      },
+      "count": 1,
+      "bbox_xyxy": [220, 302, 447, 671],
+      "relations": [
+        "kneeling to left of Virgin Mary",
+        "holding a book"
+      ],
+      "bboxes_xyxy": [
+        [220, 302, 447, 671]
+      ]
+    },
+    {
+      "label": "Saint Barbara",
+      "attributes": {
+        "clothing": ["red robe", "gold trim"],
+        "action": ["standing", "holding book"]
+      },
+      "count": 1,
+      "bbox_xyxy": [597, 278, 775, 608],
+      "relations": [
+        "standing behind Virgin Mary",
+        "holding a book"
+      ],
+      "bboxes_xyxy": [
+        [597, 278, 775, 608]
+      ]
+    },
+    {
+      "label": "Saint Ursula",
+      "attributes": {
+        "clothing": ["red robe", "gold trim"],
+        "action": ["standing", "holding book"]
+      },
+      "count": 1,
+      "bbox_xyxy": [788, 283, 997,
+[2025-12-23 09:58:33,101] INFO - >> [44/200] Start example=mme:43
+[2025-12-23 09:59:01,923] INFO - << example=mme:43 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 09:59:01,923] INFO - >> [45/200] Start example=mme:44
+[2025-12-23 10:01:48,853] WARNING - !! example=mme:44 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "A historical painting depicting a pope in papal vestments blessing a man in a ducal robe, surrounded by soldiers and onlookers. The scene is set outdoors under a cloudy sky with architectural elements and ships visible in the background.",\n  "objects": [\n    {\n      "label": "pope",\n      "attributes": {\n        "vestments": ["gold", "blue", "red"],\n        "position": "center",\n        "action": "blessing"\n      },\n      "count": 1,\n      "bbox_xyxy": [435, 368, 612, 728],\n      "relations": [\n        "blessing man in ducal robe",\n        "surrounded by soldiers and onlookers"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "man in ducal robe",\n      "attributes": {\n        "robe": "gold",\n        "position": "center-right",\n        "action": "receiving blessing"\n      },\n      "count": 1,\n      "bbox_xyxy": [647, 413, 752, 628],\n      "relations": [\n        "being blessed by pope",\n        "surrounded by soldiers"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "soldiers",\n      "attributes": [\n        "armored",\n        "holding weapons",\n        "surrounding central figures"\n      ],\n      "count": 8,\n      "bbox_xyxy": [\n        [0, 333, 225, 999],\n        [158, 387, 375, 937],\n        [752, 393, 875, 628],\n        [858, 387, 945, 628],\n        [875, 387, 958, 628],\n        [935, 357, 999, 543],\n        [608, 403, 667, 500],\n        [667, 403, 715, 500]\n      ],\n      "relations": [\n        "guarding central figures",\n        "standing in formation"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "onlookers",\n      "attributes": [\n        "various clothing",\n        "watching scene",\n        "some seated"\n      ],\n      "count": 10,\n      "bbox_xyxy": [\n        [0, 0, 158, 333],\n        [158, 50, 258, 225],\n        [358, 413, 458, 587],\n        [458, 413, 558, 587],\n        [558, 413, 658, 587],\n        [658, 413, 758, 587],\n        [758, 413, 858, 587],\n        [858, 413, 958, 587],\n        [958, 413, 1000, 587],\n        [358, 628, 608, 999]\n      ],\n      "relations')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 581, in run_one
+    obs2 = self.observe(question, image_path, extra_focus=focus)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "A historical painting depicting a pope in papal vestments blessing a man in a ducal robe, surrounded by soldiers and onlookers. The scene is set outdoors under a cloudy sky with architectural elements and ships visible in the background.",
+  "objects": [
+    {
+      "label": "pope",
+      "attributes": {
+        "vestments": ["gold", "blue", "red"],
+        "position": "center",
+        "action": "blessing"
+      },
+      "count": 1,
+      "bbox_xyxy": [435, 368, 612, 728],
+      "relations": [
+        "blessing man in ducal robe",
+        "surrounded by soldiers and onlookers"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "man in ducal robe",
+      "attributes": {
+        "robe": "gold",
+        "position": "center-right",
+        "action": "receiving blessing"
+      },
+      "count": 1,
+      "bbox_xyxy": [647, 413, 752, 628],
+      "relations": [
+        "being blessed by pope",
+        "surrounded by soldiers"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "soldiers",
+      "attributes": [
+        "armored",
+        "holding weapons",
+        "surrounding central figures"
+      ],
+      "count": 8,
+      "bbox_xyxy": [
+        [0, 333, 225, 999],
+        [158, 387, 375, 937],
+        [752, 393, 875, 628],
+        [858, 387, 945, 628],
+        [875, 387, 958, 628],
+        [935, 357, 999, 543],
+        [608, 403, 667, 500],
+        [667, 403, 715, 500]
+      ],
+      "relations": [
+        "guarding central figures",
+        "standing in formation"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "onlookers",
+      "attributes": [
+        "various clothing",
+        "watching scene",
+        "some seated"
+      ],
+      "count": 10,
+      "bbox_xyxy": [
+        [0, 0, 158, 333],
+        [158, 50, 258, 225],
+        [358, 413, 458, 587],
+        [458, 413, 558, 587],
+        [558, 413, 658, 587],
+        [658, 413, 758, 587],
+        [758, 413, 858, 587],
+        [858, 413, 958, 587],
+        [958, 413, 1000, 587],
+        [358, 628, 608, 999]
+      ],
+      "relations
+[2025-12-23 10:01:48,854] INFO - >> [46/200] Start example=mme:45
+[2025-12-23 10:03:58,506] WARNING - !! example=mme:45 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "A large, detailed historical or religious painting depicting a crowded scene with numerous figures. In the center, a central figure in ornate religious attire stands near a golden canopy. Surrounding him are soldiers in armor, civilians, and people in various poses, including kneeling and pointing. The background shows a cityscape and ships under a cloudy sky.",\n  "objects": [\n    {\n      "label": "central figure in religious attire",\n      "attributes": {\n        "clothing": ["golden robe", "blue undergarment", "white mitre"],\n        "posture": "standing"\n      },\n      "count": 1,\n      "bbox_xyxy": [420, 362, 608, 730],\n      "relations": [\n        "surrounded by soldiers and civilians",\n        "standing near golden canopy"\n      ],\n      "bboxes_xyxy": []\n    },\n    {\n      "label": "soldiers in armor",\n      "attributes": {\n        "armor": ["metal", "chainmail", "helmet"],\n        "posture": "standing or kneeling"\n      },\n      "count": 6,\n      "bbox_xyxy": [\n        [39, 332, 226, 999],\n        [158, 332, 358, 930],\n        [775, 390, 899, 625],\n        [865, 385, 945, 640],\n        [650, 397, 720, 625],\n        [595, 397, 650, 525]\n      ],\n      "relations": [\n        "guarding the central figure",\n        "holding weapons"\n      ],\n      "bboxes_xyxy": []\n    },\n    {\n      "label": "golden canopy",\n      "attributes": {\n        "color": "gold",\n        "shape": "domed",\n        "material": "metallic"\n      },\n      "count": 1,\n      "bbox_xyxy": [345, 242, 492, 362],\n      "relations": [\n        "positioned behind the central figure",\n        "part of the scene\'s focal point"\n      ],\n      "bboxes_xyxy": []\n    },\n    {\n      "label": "civilians",\n      "attributes": {\n        "clothing": ["blue", "red", "white", "brown"],\n        "posture": "kneeling, sitting, standing"\n      },\n      "count": 10,\n      "bbox_xyxy": [\n        [358, 412, 450, 590],\n        [345, 630, 600, 950],\n        [405, 412, 480, 550],\n        [580, 465, 660, 630],\n        [595, 675, 710, 830],\n        [480, 412, 540, 525],\n        [650, 412, 700, 525],\n        [775, 600, 999, 999],\n        [405, 615, 915, 999],\n        [0, 0, 220, 362]\n      ],\n      "relations": [\n        "gathered around')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "A large, detailed historical or religious painting depicting a crowded scene with numerous figures. In the center, a central figure in ornate religious attire stands near a golden canopy. Surrounding him are soldiers in armor, civilians, and people in various poses, including kneeling and pointing. The background shows a cityscape and ships under a cloudy sky.",
+  "objects": [
+    {
+      "label": "central figure in religious attire",
+      "attributes": {
+        "clothing": ["golden robe", "blue undergarment", "white mitre"],
+        "posture": "standing"
+      },
+      "count": 1,
+      "bbox_xyxy": [420, 362, 608, 730],
+      "relations": [
+        "surrounded by soldiers and civilians",
+        "standing near golden canopy"
+      ],
+      "bboxes_xyxy": []
+    },
+    {
+      "label": "soldiers in armor",
+      "attributes": {
+        "armor": ["metal", "chainmail", "helmet"],
+        "posture": "standing or kneeling"
+      },
+      "count": 6,
+      "bbox_xyxy": [
+        [39, 332, 226, 999],
+        [158, 332, 358, 930],
+        [775, 390, 899, 625],
+        [865, 385, 945, 640],
+        [650, 397, 720, 625],
+        [595, 397, 650, 525]
+      ],
+      "relations": [
+        "guarding the central figure",
+        "holding weapons"
+      ],
+      "bboxes_xyxy": []
+    },
+    {
+      "label": "golden canopy",
+      "attributes": {
+        "color": "gold",
+        "shape": "domed",
+        "material": "metallic"
+      },
+      "count": 1,
+      "bbox_xyxy": [345, 242, 492, 362],
+      "relations": [
+        "positioned behind the central figure",
+        "part of the scene's focal point"
+      ],
+      "bboxes_xyxy": []
+    },
+    {
+      "label": "civilians",
+      "attributes": {
+        "clothing": ["blue", "red", "white", "brown"],
+        "posture": "kneeling, sitting, standing"
+      },
+      "count": 10,
+      "bbox_xyxy": [
+        [358, 412, 450, 590],
+        [345, 630, 600, 950],
+        [405, 412, 480, 550],
+        [580, 465, 660, 630],
+        [595, 675, 710, 830],
+        [480, 412, 540, 525],
+        [650, 412, 700, 525],
+        [775, 600, 999, 999],
+        [405, 615, 915, 999],
+        [0, 0, 220, 362]
+      ],
+      "relations": [
+        "gathered around
+[2025-12-23 10:03:58,507] INFO - >> [47/200] Start example=mme:46
+[2025-12-23 10:04:47,113] INFO - << example=mme:46 ok=False verdict=FAIL pred=no gt=Yes
+[2025-12-23 10:04:47,113] INFO - >> [48/200] Start example=mme:47
+[2025-12-23 10:05:11,401] INFO - << example=mme:47 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 10:05:11,402] INFO - >> [49/200] Start example=mme:48
+[2025-12-23 10:07:24,350] WARNING - !! example=mme:48 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "A painting depicting a bearded man seated at a table with an angel beside him, both illuminated against a dark background. The man holds a horn and gestures with his other hand, while the angel has large white wings and wears a blue and green garment. Objects on the table include an open book, a rolled scroll, a small hourglass, and a dark spherical object.",\n  "objects": [\n    {\n      "label": "bearded man",\n      "attributes": {\n        "skin": "tanned",\n        "hair": "gray",\n        "beard": "long",\n        "clothing": "red draped cloth",\n        "posture": "seated",\n        "action": "holding horn, gesturing with left hand"\n      },\n      "count": 1,\n      "bbox_xyxy": [417, 226, 997, 823],\n      "relations": [\n        "seated at table",\n        "holding horn",\n        "gesturing with left hand",\n        "next to angel"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "angel",\n      "attributes": {\n        "wings": "large, white",\n        "hair": "curly brown",\n        "clothing": "blue and green draped garment",\n        "posture": "leaning forward",\n        "action": "reaching toward man"\n      },\n      "count": 1,\n      "bbox_xyxy": [12, 181, 488, 803],\n      "relations": [\n        "standing beside man",\n        "leaning toward man",\n        "wings behind back"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "table",\n      "attributes": [\n        "wooden",\n        "dark brown",\n        "covered with objects"\n      ],\n      "count": 1,\n      "bbox_xyxy": [212, 768, 997, 997],\n      "relations": [\n        "under man\'s hands",\n        "holding open book",\n        "holding rolled scroll"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "horn",\n      "attributes": [\n        "metallic",\n        "conical shape",\n        "held by man"\n      ],\n      "count": 1,\n      "bbox_xyxy": [600, 150, 772, 398],\n      "relations": [\n        "held by man",\n        "pointing upward"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "open book",\n      "attributes": [\n        "white pages",\n        "bound in dark cover"\n      ],\n      "count": 1,\n      "bbox_xyxy": [497, 772, 897, 888],\n      "relations": [\n        "on table",\n        "being written on by man"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "rolled scroll",\n      "attributes": [\n        "white",\n        "rolled up"\n      ],\n      "count": 1,\n      "bbox_xyxy": [830, 823, 927, 897],\n      "relations": [\n        "on table",\n        "next to open book"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "hourglass",\n      "attributes": [\n        "dark glass",\n        "small",\n        "on table"\n      ],\n      "count": 1,\n      "bbox_xyxy": [93')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "A painting depicting a bearded man seated at a table with an angel beside him, both illuminated against a dark background. The man holds a horn and gestures with his other hand, while the angel has large white wings and wears a blue and green garment. Objects on the table include an open book, a rolled scroll, a small hourglass, and a dark spherical object.",
+  "objects": [
+    {
+      "label": "bearded man",
+      "attributes": {
+        "skin": "tanned",
+        "hair": "gray",
+        "beard": "long",
+        "clothing": "red draped cloth",
+        "posture": "seated",
+        "action": "holding horn, gesturing with left hand"
+      },
+      "count": 1,
+      "bbox_xyxy": [417, 226, 997, 823],
+      "relations": [
+        "seated at table",
+        "holding horn",
+        "gesturing with left hand",
+        "next to angel"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "angel",
+      "attributes": {
+        "wings": "large, white",
+        "hair": "curly brown",
+        "clothing": "blue and green draped garment",
+        "posture": "leaning forward",
+        "action": "reaching toward man"
+      },
+      "count": 1,
+      "bbox_xyxy": [12, 181, 488, 803],
+      "relations": [
+        "standing beside man",
+        "leaning toward man",
+        "wings behind back"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "table",
+      "attributes": [
+        "wooden",
+        "dark brown",
+        "covered with objects"
+      ],
+      "count": 1,
+      "bbox_xyxy": [212, 768, 997, 997],
+      "relations": [
+        "under man's hands",
+        "holding open book",
+        "holding rolled scroll"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "horn",
+      "attributes": [
+        "metallic",
+        "conical shape",
+        "held by man"
+      ],
+      "count": 1,
+      "bbox_xyxy": [600, 150, 772, 398],
+      "relations": [
+        "held by man",
+        "pointing upward"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "open book",
+      "attributes": [
+        "white pages",
+        "bound in dark cover"
+      ],
+      "count": 1,
+      "bbox_xyxy": [497, 772, 897, 888],
+      "relations": [
+        "on table",
+        "being written on by man"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "rolled scroll",
+      "attributes": [
+        "white",
+        "rolled up"
+      ],
+      "count": 1,
+      "bbox_xyxy": [830, 823, 927, 897],
+      "relations": [
+        "on table",
+        "next to open book"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "hourglass",
+      "attributes": [
+        "dark glass",
+        "small",
+        "on table"
+      ],
+      "count": 1,
+      "bbox_xyxy": [93
+[2025-12-23 10:07:24,351] INFO - >> [50/200] Start example=mme:49
+[2025-12-23 10:09:37,000] WARNING - !! example=mme:49 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "A painting depicting a bearded man at a desk with an angel beside him, rendered in a chiaroscuro style with rich colors and detailed textures.",\n  "objects": [\n    {\n      "label": "bearded man",\n      "attributes": {\n        "skin tone": "tanned",\n        "hair": "gray",\n        "beard": "long and white",\n        "clothing": "red draped fabric",\n        "posture": "seated",\n        "action": "writing or gesturing"\n      },\n      "count": 1,\n      "bbox_xyxy": [418, 227, 997, 823],\n      "relations": [\n        "sitting at a desk",\n        "holding a pen",\n        "next to an angel"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "angel",\n      "attributes": {\n        "wings": "white and feathered",\n        "hair": "curly and brown",\n        "clothing": "blue and green draped fabric",\n        "posture": "leaning forward",\n        "action": "gesturing"\n      },\n      "count": 1,\n      "bbox_xyxy": [12, 182, 487, 803],\n      "relations": [\n        "standing beside the man",\n        "looking at the man",\n        "part of the composition"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "desk",\n      "attributes": [\n        "wooden",\n        "dark brown",\n        "covered with objects"\n      ],\n      "count": 1,\n      "bbox_xyxy": [212, 766, 997, 997],\n      "relations": [\n        "under the man\'s hands",\n        "holding papers and tools"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "papers",\n      "attributes": [\n        "white",\n        "rolled and unrolled",\n        "on the desk"\n      ],\n      "count": 2,\n      "bbox_xyxy": [500, 772, 900, 888],\n      "relations": [\n        "in front of the man",\n        "being written on"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "horn",\n      "attributes": [\n        "metallic",\n        "bronze or brass",\n        "held by the man"\n      ],\n      "count": 1,\n      "bbox_xyxy": [600, 152, 772, 397],\n      "relations": [\n        "held by the man",\n        "part of the composition"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "hourglass",\n      "attributes": [\n        "glass",\n        "black",\n        "on the desk"\n      ],\n      "count": 1,\n      "bbox_xyxy": [933, 783, 997, 900],\n      "relations": [\n        "on the right side of the desk"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "lamp",\n      "attributes": [\n        "metallic",\n        "bronze or brass",\n        "on a stand"\n      ],\n      "count": 1,\n      "bbox_xyxy": [733, 212, 897, 443],\n      "relations": [\n        "on the right side of the scene",\n        "illuminating the')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "A painting depicting a bearded man at a desk with an angel beside him, rendered in a chiaroscuro style with rich colors and detailed textures.",
+  "objects": [
+    {
+      "label": "bearded man",
+      "attributes": {
+        "skin tone": "tanned",
+        "hair": "gray",
+        "beard": "long and white",
+        "clothing": "red draped fabric",
+        "posture": "seated",
+        "action": "writing or gesturing"
+      },
+      "count": 1,
+      "bbox_xyxy": [418, 227, 997, 823],
+      "relations": [
+        "sitting at a desk",
+        "holding a pen",
+        "next to an angel"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "angel",
+      "attributes": {
+        "wings": "white and feathered",
+        "hair": "curly and brown",
+        "clothing": "blue and green draped fabric",
+        "posture": "leaning forward",
+        "action": "gesturing"
+      },
+      "count": 1,
+      "bbox_xyxy": [12, 182, 487, 803],
+      "relations": [
+        "standing beside the man",
+        "looking at the man",
+        "part of the composition"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "desk",
+      "attributes": [
+        "wooden",
+        "dark brown",
+        "covered with objects"
+      ],
+      "count": 1,
+      "bbox_xyxy": [212, 766, 997, 997],
+      "relations": [
+        "under the man's hands",
+        "holding papers and tools"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "papers",
+      "attributes": [
+        "white",
+        "rolled and unrolled",
+        "on the desk"
+      ],
+      "count": 2,
+      "bbox_xyxy": [500, 772, 900, 888],
+      "relations": [
+        "in front of the man",
+        "being written on"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "horn",
+      "attributes": [
+        "metallic",
+        "bronze or brass",
+        "held by the man"
+      ],
+      "count": 1,
+      "bbox_xyxy": [600, 152, 772, 397],
+      "relations": [
+        "held by the man",
+        "part of the composition"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "hourglass",
+      "attributes": [
+        "glass",
+        "black",
+        "on the desk"
+      ],
+      "count": 1,
+      "bbox_xyxy": [933, 783, 997, 900],
+      "relations": [
+        "on the right side of the desk"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "lamp",
+      "attributes": [
+        "metallic",
+        "bronze or brass",
+        "on a stand"
+      ],
+      "count": 1,
+      "bbox_xyxy": [733, 212, 897, 443],
+      "relations": [
+        "on the right side of the scene",
+        "illuminating the
+[2025-12-23 10:09:37,001] INFO - >> [51/200] Start example=mme:50
+[2025-12-23 10:09:53,521] INFO - << example=mme:50 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 10:09:53,521] INFO - >> [52/200] Start example=mme:51
+[2025-12-23 10:10:14,342] INFO - << example=mme:51 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 10:10:14,343] INFO - >> [53/200] Start example=mme:52
+[2025-12-23 10:10:45,410] INFO - << example=mme:52 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 10:10:45,411] INFO - >> [54/200] Start example=mme:53
+[2025-12-23 10:11:34,143] INFO - << example=mme:53 ok=False verdict=FAIL pred=yes gt=No
+[2025-12-23 10:11:34,143] INFO - >> [55/200] Start example=mme:54
+[2025-12-23 10:11:56,437] INFO - << example=mme:54 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 10:11:56,438] INFO - >> [56/200] Start example=mme:55
+[2025-12-23 10:12:39,522] INFO - << example=mme:55 ok=False verdict=FAIL pred=yes gt=No
+[2025-12-23 10:12:39,522] INFO - >> [57/200] Start example=mme:56
+[2025-12-23 10:12:52,067] INFO - << example=mme:56 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 10:12:52,067] INFO - >> [58/200] Start example=mme:57
+[2025-12-23 10:13:01,988] INFO - << example=mme:57 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 10:13:01,989] INFO - >> [59/200] Start example=mme:58
+[2025-12-23 10:15:09,858] WARNING - !! example=mme:58 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "A Renaissance-style painting depicting the Virgin Mary holding the Christ child, with Saint Joseph and a young boy nearby. The Virgin wears a blue robe and golden head covering, seated under a dark curtain. Saint Joseph, with white beard and brown robe, holds a scroll with text. The background shows a landscape with trees and sky.",\n  "objects": [\n    {\n      "label": "Virgin Mary",\n      "attributes": {\n        "clothing": ["blue robe", "pink undergarment", "golden head covering"],\n        "posture": "seated",\n        "holding": "Christ child"\n      },\n      "count": 1,\n      "bbox_xyxy": [170, 68, 780, 995],\n      "relations": [\n        "holding Christ child",\n        "seated under curtain",\n        "looking at Christ child"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "Christ child",\n      "attributes": {\n        "clothing": ["white garment", "pink robe"],\n        "posture": "being held",\n        "action": "reaching for flower"\n      },\n      "count": 1,\n      "bbox_xyxy": [338, 206, 675, 720],\n      "relations": [\n        "held by Virgin Mary",\n        "reaching for flower",\n        "looking at Saint Joseph"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "Saint Joseph",\n      "attributes": {\n        "clothing": ["brown robe", "white collar"],\n        "hair": "white beard and hair",\n        "holding": "scroll"\n      },\n      "count": 1,\n      "bbox_xyxy": [675, 125, 999, 995],\n      "relations": [\n        "standing beside Virgin Mary",\n        "holding scroll",\n        "looking at Christ child"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "young boy",\n      "attributes": {\n        "clothing": ["grey tunic"],\n        "posture": "standing",\n        "action": "reaching for flower"\n      },\n      "count": 1,\n      "bbox_xyxy": [675, 487, 999, 995],\n      "relations": [\n        "standing beside Saint Joseph",\n        "reaching for flower",\n        "looking at Christ child"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "dark curtain",\n      "attributes": ["green", "draped"],\n      "count": 1,\n      "bbox_xyxy": [0, 0, 715, 995],\n      "relations": [\n        "behind Virgin Mary",\n        "partially covering background"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "scroll",\n      "attributes": {\n        "text": "MAGNANIMUS",\n        "color": "white",\n        "position": "held by Saint Joseph"\n      },\n      "count": 1,\n      "bbox_xyxy": [900, 390, 999, 540],\n      "relations": [\n        "held by Saint Joseph",\n        "text visible"\n      ],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "landscape",\n      "attributes": {\n        "elements": ["trees", "sky", "mountains"]\n      },\n      "count": 1,\n      "bbox_xyxy": [675, 0, 99')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "A Renaissance-style painting depicting the Virgin Mary holding the Christ child, with Saint Joseph and a young boy nearby. The Virgin wears a blue robe and golden head covering, seated under a dark curtain. Saint Joseph, with white beard and brown robe, holds a scroll with text. The background shows a landscape with trees and sky.",
+  "objects": [
+    {
+      "label": "Virgin Mary",
+      "attributes": {
+        "clothing": ["blue robe", "pink undergarment", "golden head covering"],
+        "posture": "seated",
+        "holding": "Christ child"
+      },
+      "count": 1,
+      "bbox_xyxy": [170, 68, 780, 995],
+      "relations": [
+        "holding Christ child",
+        "seated under curtain",
+        "looking at Christ child"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "Christ child",
+      "attributes": {
+        "clothing": ["white garment", "pink robe"],
+        "posture": "being held",
+        "action": "reaching for flower"
+      },
+      "count": 1,
+      "bbox_xyxy": [338, 206, 675, 720],
+      "relations": [
+        "held by Virgin Mary",
+        "reaching for flower",
+        "looking at Saint Joseph"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "Saint Joseph",
+      "attributes": {
+        "clothing": ["brown robe", "white collar"],
+        "hair": "white beard and hair",
+        "holding": "scroll"
+      },
+      "count": 1,
+      "bbox_xyxy": [675, 125, 999, 995],
+      "relations": [
+        "standing beside Virgin Mary",
+        "holding scroll",
+        "looking at Christ child"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "young boy",
+      "attributes": {
+        "clothing": ["grey tunic"],
+        "posture": "standing",
+        "action": "reaching for flower"
+      },
+      "count": 1,
+      "bbox_xyxy": [675, 487, 999, 995],
+      "relations": [
+        "standing beside Saint Joseph",
+        "reaching for flower",
+        "looking at Christ child"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "dark curtain",
+      "attributes": ["green", "draped"],
+      "count": 1,
+      "bbox_xyxy": [0, 0, 715, 995],
+      "relations": [
+        "behind Virgin Mary",
+        "partially covering background"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "scroll",
+      "attributes": {
+        "text": "MAGNANIMUS",
+        "color": "white",
+        "position": "held by Saint Joseph"
+      },
+      "count": 1,
+      "bbox_xyxy": [900, 390, 999, 540],
+      "relations": [
+        "held by Saint Joseph",
+        "text visible"
+      ],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "landscape",
+      "attributes": {
+        "elements": ["trees", "sky", "mountains"]
+      },
+      "count": 1,
+      "bbox_xyxy": [675, 0, 99
+[2025-12-23 10:15:09,860] INFO - >> [60/200] Start example=mme:59
+[2025-12-23 10:17:18,014] WARNING - !! example=mme:59 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "A religious painting depicting the Virgin Mary holding the Christ child, with Saint Joseph and a young boy nearby. The Virgin Mary wears a blue robe and a golden head covering. Saint Joseph has a white beard and holds a staff with an inscription. The background includes trees and a landscape.",\n  "objects": [\n    {\n      "label": "Virgin Mary",\n      "attributes": {\n        "clothing": ["blue robe", "pink undergarment", "golden head covering"],\n        "posture": "seated",\n        "holding": "Christ child"\n      },\n      "count": 1,\n      "bbox_xyxy": [175, 67, 785, 995],\n      "relations": [\n        "holding Christ child",\n        "next to Saint Joseph",\n        "under dark curtain"\n      ],\n      "bboxes_xyxy": []\n    },\n    {\n      "label": "Christ child",\n      "attributes": {\n        "hair": "curly",\n        "clothing": "white garment",\n        "posture": "being held"\n      },\n      "count": 1,\n      "bbox_xyxy": [340, 207, 675, 719],\n      "relations": [\n        "held by Virgin Mary",\n        "reaching toward Saint Joseph"\n      ],\n      "bboxes_xyxy": []\n    },\n    {\n      "label": "Saint Joseph",\n      "attributes": {\n        "hair": "white and curly",\n        "beard": "white",\n        "clothing": "brown robe",\n        "holding": "staff with inscription"\n      },\n      "count": 1,\n      "bbox_xyxy": [675, 127, 999, 995],\n      "relations": [\n        "standing beside Virgin Mary",\n        "holding staff",\n        "holding young boy"\n      ],\n      "bboxes_xyxy": []\n    },\n    {\n      "label": "young boy",\n      "attributes": {\n        "hair": "curly",\n        "clothing": "grey tunic",\n        "posture": "reaching up"\n      },\n      "count": 1,\n      "bbox_xyxy": [675, 494, 999, 995],\n      "relations": [\n        "held by Saint Joseph",\n        "reaching toward Christ child"\n      ],\n      "bboxes_xyxy": []\n    },\n    {\n      "label": "dark curtain",\n      "attributes": ["green", "velvet", "draped"],\n      "count": 1,\n      "bbox_xyxy": [0, 0, 725, 995],\n      "relations": [\n        "behind Virgin Mary",\n        "partially covering background"\n      ],\n      "bboxes_xyxy": []\n    },\n    {\n      "label": "staff with inscription",\n      "attributes": {\n        "inscription": "MAGNANIMUS",\n        "material": "wood",\n        "color": "brown"\n      },\n      "count": 1,\n      "bbox_xyxy": [899, 388, 999, 545],\n      "relations": [\n        "held by Saint Joseph",\n        "pointing toward Christ child"\n      ],\n      "bboxes_xyxy": []\n    }\n  ],\n  "ocr_text_blocks": [\n    "MAGNANIMUS"\n  ],\n  "uncertainties": [\n    "Cannot confirm the artist\'s identity from visual evidence alone."\n  ],\n  "focus_suggestions": [\n    "Examine the inscription on the staff for attribution clues.",\n    "Look for artist\'s signature or workshop mark in the painting."\n  ]')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "A religious painting depicting the Virgin Mary holding the Christ child, with Saint Joseph and a young boy nearby. The Virgin Mary wears a blue robe and a golden head covering. Saint Joseph has a white beard and holds a staff with an inscription. The background includes trees and a landscape.",
+  "objects": [
+    {
+      "label": "Virgin Mary",
+      "attributes": {
+        "clothing": ["blue robe", "pink undergarment", "golden head covering"],
+        "posture": "seated",
+        "holding": "Christ child"
+      },
+      "count": 1,
+      "bbox_xyxy": [175, 67, 785, 995],
+      "relations": [
+        "holding Christ child",
+        "next to Saint Joseph",
+        "under dark curtain"
+      ],
+      "bboxes_xyxy": []
+    },
+    {
+      "label": "Christ child",
+      "attributes": {
+        "hair": "curly",
+        "clothing": "white garment",
+        "posture": "being held"
+      },
+      "count": 1,
+      "bbox_xyxy": [340, 207, 675, 719],
+      "relations": [
+        "held by Virgin Mary",
+        "reaching toward Saint Joseph"
+      ],
+      "bboxes_xyxy": []
+    },
+    {
+      "label": "Saint Joseph",
+      "attributes": {
+        "hair": "white and curly",
+        "beard": "white",
+        "clothing": "brown robe",
+        "holding": "staff with inscription"
+      },
+      "count": 1,
+      "bbox_xyxy": [675, 127, 999, 995],
+      "relations": [
+        "standing beside Virgin Mary",
+        "holding staff",
+        "holding young boy"
+      ],
+      "bboxes_xyxy": []
+    },
+    {
+      "label": "young boy",
+      "attributes": {
+        "hair": "curly",
+        "clothing": "grey tunic",
+        "posture": "reaching up"
+      },
+      "count": 1,
+      "bbox_xyxy": [675, 494, 999, 995],
+      "relations": [
+        "held by Saint Joseph",
+        "reaching toward Christ child"
+      ],
+      "bboxes_xyxy": []
+    },
+    {
+      "label": "dark curtain",
+      "attributes": ["green", "velvet", "draped"],
+      "count": 1,
+      "bbox_xyxy": [0, 0, 725, 995],
+      "relations": [
+        "behind Virgin Mary",
+        "partially covering background"
+      ],
+      "bboxes_xyxy": []
+    },
+    {
+      "label": "staff with inscription",
+      "attributes": {
+        "inscription": "MAGNANIMUS",
+        "material": "wood",
+        "color": "brown"
+      },
+      "count": 1,
+      "bbox_xyxy": [899, 388, 999, 545],
+      "relations": [
+        "held by Saint Joseph",
+        "pointing toward Christ child"
+      ],
+      "bboxes_xyxy": []
+    }
+  ],
+  "ocr_text_blocks": [
+    "MAGNANIMUS"
+  ],
+  "uncertainties": [
+    "Cannot confirm the artist's identity from visual evidence alone."
+  ],
+  "focus_suggestions": [
+    "Examine the inscription on the staff for attribution clues.",
+    "Look for artist's signature or workshop mark in the painting."
+  ]
+[2025-12-23 10:17:18,015] INFO - >> [61/200] Start example=mme:60
+[2025-12-23 10:19:55,367] WARNING - !! example=mme:60 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "objects": [\n    {\n      "label": "central figure being lifted by angels",\n      "attributes": {\n        "skin tone": "pale",\n        "clothing": "draped white cloth",\n        "posture": "ascending",\n        "surrounding": "angels"\n      },\n      "count": 1,\n      "bbox_xyxy": [375, 187, 585, 600],\n      "relations": [\n        "surrounded by angels",\n        "center of composition"\n      ],\n      "bboxes_xyxy": [\n        [375, 187, 585, 600]\n      ]\n    },\n    {\n      "label": "golden ornate frame",\n      "attributes": [\n        "gold",\n        "elaborate carvings",\n        "decorative molding"\n      ],\n      "count": 1,\n      "bbox_xyxy": [0, 0, 1000, 999],\n      "relations": [\n        "encloses the painting"\n      ],\n      "bboxes_xyxy": [\n        [0, 0, 1000, 999]\n      ]\n    },\n    {\n      "label": "red drapery",\n      "attributes": [\n        "rich fabric",\n        "heavy folds",\n        "tassels"\n      ],\n      "count": 2,\n      "bbox_xyxy": [\n        [25, 111, 325, 500],\n        [650, 111, 975, 500]\n      ],\n      "relations": [\n        "frames the scene on left and right"\n      ],\n      "bboxes_xyxy": [\n        [25, 111, 325, 500],\n        [650, 111, 975, 500]\n      ]\n    },\n    {\n      "label": "multiple saints and figures",\n      "attributes": [\n        "halos",\n        "diverse poses",\n        "rich robes"\n      ],\n      "count": 10,\n      "bbox_xyxy": [\n        [50, 360, 900, 850]\n      ],\n      "relations": [\n        "arranged in theatrical composition",\n        "surrounding central event"\n      ],\n      "bboxes_xyxy": [\n        [50, 360, 900, 850]\n      ]\n    },\n    {\n      "label": "central ornamental medallion",\n      "attributes": {\n        "shape": "oval",\n        "content": "portrait",\n        "surrounded by": "golden embellishments"\n      },\n      "count": 1,\n      "bbox_xyxy": [460, 680, 540, 850],\n      "relations": [\n        "placed at center foreground"\n      ],\n      "bboxes_xyxy": [\n        [460, 680, 540, 850]\n      ]\n    }\n  ],\n  "ocr_text_blocks": [],\n  "scene_summary": "A large, horizontally oriented painting depicting a dramatic religious scene with a central figure being lifted by angels, surrounded by multiple saints and figures. The composition is framed by heavy red drapery and enclosed in an ornate golden frame. The style features dynamic figures, theatrical arrangement, and strong chiaroscuro lighting.",\n  "uncertainties": [],\n  "focus_suggestions": [\n    "central figure and angels",\n    "red drapery and framing",\n    "ornate golden frame",\n    "theatrical composition and')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 581, in run_one
+    obs2 = self.observe(question, image_path, extra_focus=focus)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "objects": [
+    {
+      "label": "central figure being lifted by angels",
+      "attributes": {
+        "skin tone": "pale",
+        "clothing": "draped white cloth",
+        "posture": "ascending",
+        "surrounding": "angels"
+      },
+      "count": 1,
+      "bbox_xyxy": [375, 187, 585, 600],
+      "relations": [
+        "surrounded by angels",
+        "center of composition"
+      ],
+      "bboxes_xyxy": [
+        [375, 187, 585, 600]
+      ]
+    },
+    {
+      "label": "golden ornate frame",
+      "attributes": [
+        "gold",
+        "elaborate carvings",
+        "decorative molding"
+      ],
+      "count": 1,
+      "bbox_xyxy": [0, 0, 1000, 999],
+      "relations": [
+        "encloses the painting"
+      ],
+      "bboxes_xyxy": [
+        [0, 0, 1000, 999]
+      ]
+    },
+    {
+      "label": "red drapery",
+      "attributes": [
+        "rich fabric",
+        "heavy folds",
+        "tassels"
+      ],
+      "count": 2,
+      "bbox_xyxy": [
+        [25, 111, 325, 500],
+        [650, 111, 975, 500]
+      ],
+      "relations": [
+        "frames the scene on left and right"
+      ],
+      "bboxes_xyxy": [
+        [25, 111, 325, 500],
+        [650, 111, 975, 500]
+      ]
+    },
+    {
+      "label": "multiple saints and figures",
+      "attributes": [
+        "halos",
+        "diverse poses",
+        "rich robes"
+      ],
+      "count": 10,
+      "bbox_xyxy": [
+        [50, 360, 900, 850]
+      ],
+      "relations": [
+        "arranged in theatrical composition",
+        "surrounding central event"
+      ],
+      "bboxes_xyxy": [
+        [50, 360, 900, 850]
+      ]
+    },
+    {
+      "label": "central ornamental medallion",
+      "attributes": {
+        "shape": "oval",
+        "content": "portrait",
+        "surrounded by": "golden embellishments"
+      },
+      "count": 1,
+      "bbox_xyxy": [460, 680, 540, 850],
+      "relations": [
+        "placed at center foreground"
+      ],
+      "bboxes_xyxy": [
+        [460, 680, 540, 850]
+      ]
+    }
+  ],
+  "ocr_text_blocks": [],
+  "scene_summary": "A large, horizontally oriented painting depicting a dramatic religious scene with a central figure being lifted by angels, surrounded by multiple saints and figures. The composition is framed by heavy red drapery and enclosed in an ornate golden frame. The style features dynamic figures, theatrical arrangement, and strong chiaroscuro lighting.",
+  "uncertainties": [],
+  "focus_suggestions": [
+    "central figure and angels",
+    "red drapery and framing",
+    "ornate golden frame",
+    "theatrical composition and
+[2025-12-23 10:19:55,368] INFO - >> [62/200] Start example=mme:61
+[2025-12-23 10:22:00,570] WARNING - !! example=mme:61 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "A large, ornate painting depicting a religious scene with multiple figures, including a central crucifixion or resurrection motif, surrounded by saints and angels. The artwork is framed in an elaborate golden frame with red drapery on either side.",\n  "objects": [\n    {\n      "label": "central figure",\n      "attributes": {\n        "type": "human",\n        "pose": "crucified or resurrected",\n        "clothing": "naked torso, draped cloth"\n      },\n      "count": 1,\n      "bbox_xyxy": [400, 187, 540, 600],\n      "relations": [\n        "surrounded by angels",\n        "above other figures"\n      ]\n    },\n    {\n      "label": "angels",\n      "attributes": {\n        "type": "human",\n        "wings": true,\n        "clothing": "blue and red robes"\n      },\n      "count": 3,\n      "bbox_xyxy": [\n        [370, 137, 420, 287],\n        [480, 187, 540, 350],\n        [510, 187, 580, 350]\n      ]\n    },\n    {\n      "label": "saints",\n      "attributes": {\n        "type": "human",\n        "clothing": "robes",\n        "halos": true\n      },\n      "count": 7,\n      "bbox_xyxy": [\n        [60, 370, 150, 870],\n        [150, 370, 240, 800],\n        [250, 370, 350, 650],\n        [580, 300, 680, 650],\n        [640, 450, 780, 850],\n        [780, 370, 880, 850],\n        [830, 370, 920, 870]\n      ]\n    },\n    {\n      "label": "frame",\n      "attributes": {\n        "material": "gold",\n        "style": "ornate",\n        "shape": "rectangular"\n      },\n      "count": 1,\n      "bbox_xyxy": [0, 0, 1000, 999]\n    },\n    {\n      "label": "drapery",\n      "attributes": {\n        "color": "red",\n        "material": "fabric",\n        "style": "heavy"\n      },\n      "count": 2,\n      "bbox_xyxy": [\n        [20, 110, 320, 870],\n        [650, 110, 980, 870]\n      ]\n    },\n    {\n      "label": "ornamental centerpiece",\n      "attributes": {\n        "material": "gold",\n        "shape": "oval",\n        "content": "portrait"\n      },\n      "count": 1,\n      "bbox_xyxy": [460, 680, 540, 870]\n    }\n  ],\n  "ocr_text_blocks": [],\n  "uncertainties": [\n    "The artist\'s name is not visible in the image."\n  ],\n  "focus_suggestions": [\n    "Central figure and surrounding angels",\n    "Ornate golden frame",\n    "Red drapery on both sides"')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "A large, ornate painting depicting a religious scene with multiple figures, including a central crucifixion or resurrection motif, surrounded by saints and angels. The artwork is framed in an elaborate golden frame with red drapery on either side.",
+  "objects": [
+    {
+      "label": "central figure",
+      "attributes": {
+        "type": "human",
+        "pose": "crucified or resurrected",
+        "clothing": "naked torso, draped cloth"
+      },
+      "count": 1,
+      "bbox_xyxy": [400, 187, 540, 600],
+      "relations": [
+        "surrounded by angels",
+        "above other figures"
+      ]
+    },
+    {
+      "label": "angels",
+      "attributes": {
+        "type": "human",
+        "wings": true,
+        "clothing": "blue and red robes"
+      },
+      "count": 3,
+      "bbox_xyxy": [
+        [370, 137, 420, 287],
+        [480, 187, 540, 350],
+        [510, 187, 580, 350]
+      ]
+    },
+    {
+      "label": "saints",
+      "attributes": {
+        "type": "human",
+        "clothing": "robes",
+        "halos": true
+      },
+      "count": 7,
+      "bbox_xyxy": [
+        [60, 370, 150, 870],
+        [150, 370, 240, 800],
+        [250, 370, 350, 650],
+        [580, 300, 680, 650],
+        [640, 450, 780, 850],
+        [780, 370, 880, 850],
+        [830, 370, 920, 870]
+      ]
+    },
+    {
+      "label": "frame",
+      "attributes": {
+        "material": "gold",
+        "style": "ornate",
+        "shape": "rectangular"
+      },
+      "count": 1,
+      "bbox_xyxy": [0, 0, 1000, 999]
+    },
+    {
+      "label": "drapery",
+      "attributes": {
+        "color": "red",
+        "material": "fabric",
+        "style": "heavy"
+      },
+      "count": 2,
+      "bbox_xyxy": [
+        [20, 110, 320, 870],
+        [650, 110, 980, 870]
+      ]
+    },
+    {
+      "label": "ornamental centerpiece",
+      "attributes": {
+        "material": "gold",
+        "shape": "oval",
+        "content": "portrait"
+      },
+      "count": 1,
+      "bbox_xyxy": [460, 680, 540, 870]
+    }
+  ],
+  "ocr_text_blocks": [],
+  "uncertainties": [
+    "The artist's name is not visible in the image."
+  ],
+  "focus_suggestions": [
+    "Central figure and surrounding angels",
+    "Ornate golden frame",
+    "Red drapery on both sides"
+[2025-12-23 10:22:00,571] INFO - >> [63/200] Start example=mme:62
+[2025-12-23 10:22:22,075] INFO - << example=mme:62 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 10:22:22,075] INFO - >> [64/200] Start example=mme:63
+[2025-12-23 10:22:30,415] INFO - << example=mme:63 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 10:22:30,415] INFO - >> [65/200] Start example=mme:64
+[2025-12-23 10:22:57,493] INFO - << example=mme:64 ok=True verdict=PASS pred=yes gt=Yes
+[2025-12-23 10:22:57,493] INFO - >> [66/200] Start example=mme:65
+[2025-12-23 10:23:13,164] INFO - << example=mme:65 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 10:23:13,164] INFO - >> [67/200] Start example=mme:66
+[2025-12-23 10:24:30,259] INFO - << example=mme:66 ok=False verdict=FAIL pred=no gt=Yes
+[2025-12-23 10:24:30,259] INFO - >> [68/200] Start example=mme:67
+[2025-12-23 10:26:35,592] WARNING - !! example=mme:67 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "Two-panel painting depicting religious figures in forested landscapes. Left panel: a robed monk kneeling and gesturing upward. Right panel: a bearded man in draped clothing kneeling beside a lion, with a tall wooden post. Both scenes feature detailed trees, mountains, and a cloudy sky.",\n  "objects": [\n    {\n      "label": "left panel painting",\n      "attributes": {\n        "content": "monk kneeling, gesturing upward, surrounded by trees and landscape"\n      },\n      "count": 1,\n      "bbox_xyxy": [0, 0, 499, 999],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "right panel painting",\n      "attributes": {\n        "content": "bearded man kneeling beside lion, with wooden post and trees"\n      },\n      "count": 1,\n      "bbox_xyxy": [500, 0, 999, 999],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "monk",\n      "attributes": ["robed", "kneeling", "gesturing upward"],\n      "count": 1,\n      "bbox_xyxy": [60, 358, 295, 977],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "bearded man",\n      "attributes": ["naked torso", "kneeling", "holding cloth"],\n      "count": 1,\n      "bbox_xyxy": [657, 353, 899, 977],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "lion",\n      "attributes": ["lying down", "facing viewer", "in foreground"],\n      "count": 1,\n      "bbox_xyxy": [838, 703, 999, 999],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "wooden post",\n      "attributes": ["tall", "vertical", "bound with rope"],\n      "count": 1,\n      "bbox_xyxy": [550, 43, 610, 999],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "trees",\n      "attributes": ["dense foliage", "mossy branches", "background elements"],\n      "count": 2,\n      "bbox_xyxy": [\n        [0, 0, 499, 999],\n        [500, 0, 999, 999]\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    },\n    {\n      "label": "landscape",\n      "attributes": ["mountains", "valley", "distant buildings"],\n      "count": 2,\n      "bbox_xyxy": [\n        [0, 0, 499, 999],\n        [500, 0, 999, 999]\n      ],\n      "relations": [],\n      "bboxes_xyxy": null\n    }\n  ],\n  "ocr_text_blocks": [\n    "190A"\n  ],\n  "uncertainties": [\n    "Cannot confirm if this artwork is displayed in the National Museum of Religious Carvings, Valladolid without additional metadata or provenance information."\n  ],\n  "focus_suggestions": [\n    "Examine the signature \'1')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "Two-panel painting depicting religious figures in forested landscapes. Left panel: a robed monk kneeling and gesturing upward. Right panel: a bearded man in draped clothing kneeling beside a lion, with a tall wooden post. Both scenes feature detailed trees, mountains, and a cloudy sky.",
+  "objects": [
+    {
+      "label": "left panel painting",
+      "attributes": {
+        "content": "monk kneeling, gesturing upward, surrounded by trees and landscape"
+      },
+      "count": 1,
+      "bbox_xyxy": [0, 0, 499, 999],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "right panel painting",
+      "attributes": {
+        "content": "bearded man kneeling beside lion, with wooden post and trees"
+      },
+      "count": 1,
+      "bbox_xyxy": [500, 0, 999, 999],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "monk",
+      "attributes": ["robed", "kneeling", "gesturing upward"],
+      "count": 1,
+      "bbox_xyxy": [60, 358, 295, 977],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "bearded man",
+      "attributes": ["naked torso", "kneeling", "holding cloth"],
+      "count": 1,
+      "bbox_xyxy": [657, 353, 899, 977],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "lion",
+      "attributes": ["lying down", "facing viewer", "in foreground"],
+      "count": 1,
+      "bbox_xyxy": [838, 703, 999, 999],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "wooden post",
+      "attributes": ["tall", "vertical", "bound with rope"],
+      "count": 1,
+      "bbox_xyxy": [550, 43, 610, 999],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "trees",
+      "attributes": ["dense foliage", "mossy branches", "background elements"],
+      "count": 2,
+      "bbox_xyxy": [
+        [0, 0, 499, 999],
+        [500, 0, 999, 999]
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    },
+    {
+      "label": "landscape",
+      "attributes": ["mountains", "valley", "distant buildings"],
+      "count": 2,
+      "bbox_xyxy": [
+        [0, 0, 499, 999],
+        [500, 0, 999, 999]
+      ],
+      "relations": [],
+      "bboxes_xyxy": null
+    }
+  ],
+  "ocr_text_blocks": [
+    "190A"
+  ],
+  "uncertainties": [
+    "Cannot confirm if this artwork is displayed in the National Museum of Religious Carvings, Valladolid without additional metadata or provenance information."
+  ],
+  "focus_suggestions": [
+    "Examine the signature '1
+[2025-12-23 10:26:35,593] INFO - >> [69/200] Start example=mme:68
+[2025-12-23 10:27:03,228] INFO - << example=mme:68 ok=False verdict=FAIL pred=no gt=Yes
+[2025-12-23 10:27:03,228] INFO - >> [70/200] Start example=mme:69
+[2025-12-23 10:27:28,702] INFO - << example=mme:69 ok=True verdict=PASS pred=no gt=No
+[2025-12-23 10:27:28,703] INFO - >> [71/200] Start example=mme:70
+[2025-12-23 10:29:35,472] WARNING - !! example=mme:70 error=RuntimeError('Failed to get valid JSON for schema=Observation. Last output:\n{\n  "scene_summary": "A triptych painting with three panels, each depicting a figure in a landscape. The central panel shows a bearded man in a black robe holding a globe with a cross, flanked by two other figures. The left panel shows a man in a red robe holding a book. The right panel shows a woman in a blue dress and white headdress holding a white jug. All panels have gold frames and inscriptions in Latin above the figures.",\n  "objects": [\n    {\n      "label": "central panel figure",\n      "attributes": {\n        "clothing": "black robe",\n        "hair": "long, dark",\n        "beard": "present",\n        "holding": "globe with cross"\n      },\n      "count": 1,\n      "bbox_xyxy": [400, 100, 600, 900],\n      "relations": [\n        "centered in the triptych",\n        "flanked by two other figures"\n      ]\n    },\n    {\n      "label": "left panel figure",\n      "attributes": {\n        "clothing": "red robe",\n        "hair": "dark, curly",\n        "beard": "present",\n        "holding": "open book"\n      },\n      "count": 1,\n      "bbox_xyxy": [30, 100, 220, 900],\n      "relations": [\n        "leftmost panel",\n        "holding a book"\n      ]\n    },\n    {\n      "label": "right panel figure",\n      "attributes": {\n        "clothing": "blue dress with red patterned sleeve",\n        "headwear": "white headdress",\n        "holding": "white jug"\n      },\n      "count": 1,\n      "bbox_xyxy": [750, 100, 950, 900],\n      "relations": [\n        "rightmost panel",\n        "holding a jug"\n      ]\n    },\n    {\n      "label": "middle panel figure",\n      "attributes": {\n        "clothing": "dark robe",\n        "headwear": "white veil",\n        "hands": "praying",\n        "holding": "nothing visible"\n      },\n      "count": 1,\n      "bbox_xyxy": [280, 100, 400, 900],\n      "relations": [\n        "left of central figure",\n        "praying"\n      ]\n    },\n    {\n      "label": "right middle panel figure",\n      "attributes": {\n        "clothing": "brown robe over grey tunic",\n        "hair": "curly",\n        "holding": "golden chalice"\n      },\n      "count": 1,\n      "bbox_xyxy": [550, 100, 700, 900],\n      "relations": [\n        "right of central figure",\n        "holding a chalice"\n      ]\n    },\n    {\n      "label": "frame",\n      "attributes": [\n        "gold",\n        "wooden",\n        "triptych"\n      ],\n      "count": 3,\n      "bbox_xyxy": [\n        [0, 0, 250, 1000],\n        [250, 0, 750, 1000],\n        [750, 0, 1000, 1000]\n      ]\n    }\n  ],\n  "ocr_text_blocks": [\n    "GOD ESTA DULCIS VIVUS A DEO GELU DESNATUM",\n    "ET VERBUM CUM FUGIT EST ET DEBITATUR IN RUMIS"')
+Traceback (most recent call last):
+  File "/opt/tiger/visual-multi-agent-research/vmas_local_eval.py", line 350, in run_eval
+    obs, cand, ver = chain.run_one(question, img_path, choices=choices, gt=gt)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 571, in run_one
+    obs1 = self.observe(question, image_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 507, in observe
+    obs = call_structured_json(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tiger/visual-multi-agent-research/chains/visual_chain.py", line 380, in call_structured_json
+    raise RuntimeError(
+RuntimeError: Failed to get valid JSON for schema=Observation. Last output:
+{
+  "scene_summary": "A triptych painting with three panels, each depicting a figure in a landscape. The central panel shows a bearded man in a black robe holding a globe with a cross, flanked by two other figures. The left panel shows a man in a red robe holding a book. The right panel shows a woman in a blue dress and white headdress holding a white jug. All panels have gold frames and inscriptions in Latin above the figures.",
+  "objects": [
+    {
+      "label": "central panel figure",
+      "attributes": {
+        "clothing": "black robe",
+        "hair": "long, dark",
+        "beard": "present",
+        "holding": "globe with cross"
+      },
+      "count": 1,
+      "bbox_xyxy": [400, 100, 600, 900],
+      "relations": [
+        "centered in the triptych",
+        "flanked by two other figures"
+      ]
+    },
+    {
+      "label": "left panel figure",
+      "attributes": {
+        "clothing": "red robe",
+        "hair": "dark, curly",
+        "beard": "present",
+        "holding": "open book"
+      },
+      "count": 1,
+      "bbox_xyxy": [30, 100, 220, 900],
+      "relations": [
+        "leftmost panel",
+        "holding a book"
+      ]
+    },
+    {
+      "label": "right panel figure",
+      "attributes": {
+        "clothing": "blue dress with red patterned sleeve",
+        "headwear": "white headdress",
+        "holding": "white jug"
+      },
+      "count": 1,
+      "bbox_xyxy": [750, 100, 950, 900],
+      "relations": [
+        "rightmost panel",
+        "holding a jug"
+      ]
+    },
+    {
+      "label": "middle panel figure",
+      "attributes": {
+        "clothing": "dark robe",
+        "headwear": "white veil",
+        "hands": "praying",
+        "holding": "nothing visible"
+      },
+      "count": 1,
+      "bbox_xyxy": [280, 100, 400, 900],
+      "relations": [
+        "left of central figure",
+        "praying"
+      ]
+    },
+    {
+      "label": "right middle panel figure",
+      "attributes": {
+        "clothing": "brown robe over grey tunic",
+        "hair": "curly",
+        "holding": "golden chalice"
+      },
+      "count": 1,
+      "bbox_xyxy": [550, 100, 700, 900],
+      "relations": [
+        "right of central figure",
+        "holding a chalice"
+      ]
+    },
+    {
+      "label": "frame",
+      "attributes": [
+        "gold",
+        "wooden",
+        "triptych"
+      ],
+      "count": 3,
+      "bbox_xyxy": [
+        [0, 0, 250, 1000],
+        [250, 0, 750, 1000],
+        [750, 0, 1000, 1000]
+      ]
+    }
+  ],
+  "ocr_text_blocks": [
+    "GOD ESTA DULCIS VIVUS A DEO GELU DESNATUM",
+    "ET VERBUM CUM FUGIT EST ET DEBITATUR IN RUMIS"
+[2025-12-23 10:29:35,473] INFO - >> [72/200] Start example=mme:71

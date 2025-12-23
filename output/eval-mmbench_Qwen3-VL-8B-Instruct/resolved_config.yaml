@@ -5,7 +5,7 @@ dataset:
   split: train
   limit: 200
 model:
-  name: Qwen/Qwen2.5-VL-7B-Instruct
+  name: Qwen/Qwen3-VL-8B-Instruct
   device_map: auto
   torch_dtype: auto
   max_image_pixels: null
@@ -14,6 +14,7 @@ generation:
   max_tokens: 800
   temperature: 0.2
   no_retry: false
+  retry_accept_policy: never
 mmbench:
   use_choice_extractor: true
 _config_path: config/mmbench_local.yaml

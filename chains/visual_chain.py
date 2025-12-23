@@ -2,11 +2,15 @@
 # -*- coding: utf-8 -*-
 """
 Observer -> Reasoner -> Verifier pipeline (pure local).
-Includes:
-- relaxed schemas (Observation / CandidateAnswer / VerificationResult)
-- structured JSON caller with repair rounds
-- normalization helpers for robust downstream usage
-- choice extraction helpers for MMBench
+
+Updates:
+1) Verifier supports two modes:
+   - JUDGE mode (when gt is provided): verdict = PASS iff candidate.final matches gt.
+   - GROUNDING mode (when gt is None): keep previous "supported by image" verifier behavior.
+2) Add retry_accept_policy to control rollback / overwrite behavior:
+   - "always": always accept round2 if retried (old behavior)
+   - "never": never accept round2 (run it optionally but keep round1)
+   - "if_better": accept round2 only if it's better than round1 (PASS > FAIL, higher confidence, fewer issues)
 """
 
 from __future__ import annotations
@@ -211,12 +215,6 @@ def normalize_observation(obs: Observation) -> Observation:
 
 
 def _extract_ints_from_string(s: str) -> List[int]:
-    """
-    Extract integer tokens from messy strings:
-      "[1]" -> [1]
-      "1,2" -> [1,2]
-      "indices: 0 3" -> [0,3]
-    """
     s = (s or "").strip()
     if not s:
         return []
@@ -233,18 +231,11 @@ def _extract_ints_from_string(s: str) -> List[int]:
 def _to_int_list(v: Any) -> List[int]:
     """
     Convert v into list[int] best-effort, robust to common LLM glitches.
-    Accept:
-      - int
-      - float that is int-like
-      - str digits / str containing bracketed numbers like "[1]" / "1,2"
-      - list of above
-      - nested lists like [[1]] or [[1],[2,3]] (flatten)
     """
     if v is None:
         return []
 
     if isinstance(v, bool):
-        # avoid True/False becoming 1/0
         return []
 
     if isinstance(v, int):
@@ -260,14 +251,12 @@ def _to_int_list(v: Any) -> List[int]:
                 return [int(s)]
             except Exception:
                 return []
-        # handle "[1]" / "1,2" / "idx: [0, 2]"
         return _extract_ints_from_string(s)
 
     if isinstance(v, list):
         out: List[int] = []
         for x in v:
             out.extend(_to_int_list(x))
-        # de-dup keep order
         seen = set()
         uniq: List[int] = []
         for x in out:
@@ -276,7 +265,6 @@ def _to_int_list(v: Any) -> List[int]:
                 seen.add(x)
         return uniq
 
-    # sometimes models output dicts; try to extract ints from values
     if isinstance(v, dict):
         out: List[int] = []
         for _, vv in v.items():
@@ -296,8 +284,6 @@ def normalize_candidate(c: CandidateAnswer) -> CandidateAnswer:
     """
     Normalize CandidateAnswer.cited into Dict[str, List[int]]-like structure.
     Also filter keys to expected ones to reduce downstream noise.
-
-    This prevents format-only issues (e.g., [[1]] or "[1]") from crashing the pipeline.
     """
     d = c.model_dump()
     cited = d.get("cited") or {}
@@ -430,12 +416,14 @@ Rules:
 - If evidence is insufficient, say so in final, keep confidence low, and cite uncertainties.
 """
 
-VERIFIER_SYS = """You are Verifier.
+# Grounding verifier (no gt)
+VERIFIER_SYS_GROUNDING = """You are Verifier.
 Task: verify whether CandidateAnswer is supported by the IMAGE (not just the text from previous agents).
 You must:
 1) Check grounding: cited evidence matches what is in the image.
 2) Check logic: the conclusion follows from evidence (briefly).
 3) If FAIL: assign error_type and give minimal fix_hint and whether to retry.
+
 Error types:
 - perception_grounding
 - reasoning
@@ -444,16 +432,64 @@ Error types:
 - communication_compression
 """
 
+# Judge verifier (with gt) — for benchmark/eval
+VERIFIER_SYS_JUDGE = """You are Verifier/Judge.
+You will be given: question, choices(optional), ground-truth answer (gt),
+observation, candidate answer, and the image.
+
+Task:
+1) Decide if candidate.final matches gt after normalization:
+   - For multiple-choice: compare option letter (A-H).
+   - For yes/no: case-insensitive compare "yes"/"no" (also accept "y"/"n").
+2) If matches gt: verdict=PASS.
+3) If NOT matches gt: verdict=FAIL, and diagnose the PRIMARY cause:
+   - perception_grounding: observation evidence is wrong/missing vs image (OCR/object mistake)
+   - reasoning: observation contains enough correct evidence but candidate reasoning/conclusion is wrong
+   - answer_mapping: output format or mapping mistake (wrong letter, polarity flip, extra text)
+   - propagation: evidence indices/cited broken or info lost between agents
+   - communication_compression: schema/format constraints caused loss/truncation
+   - unknown: cannot decide
+4) When FAIL, provide minimal issues + fix_hint, and set should_retry:
+   - should_retry=true if the error seems fixable by re-observing or re-reasoning.
+   - otherwise false.
+
+Keep issues concise and concrete.
+"""
+
 
 # ============================================================
 # 5) Chain system
 # ============================================================
+
+RetryAcceptPolicy = Literal["always", "never", "if_better"]
 
 @dataclass
 class ChainConfig:
     max_tokens: int = 800
     temperature: float = 0.2
     retry_on_fail: bool = True
+    # NEW: rollback / overwrite switch
+    retry_accept_policy: RetryAcceptPolicy = "if_better"
+
+
+def _is_better(
+    ver_a: VerificationResult,
+    cand_a: CandidateAnswer,
+    ver_b: VerificationResult,
+    cand_b: CandidateAnswer,
+) -> bool:
+    """
+    Decide if (b) is better than (a).
+    Priority:
+      1) PASS beats FAIL
+      2) higher confidence
+      3) fewer issues
+    """
+    if ver_b.verdict != ver_a.verdict:
+        return ver_b.verdict == "PASS"
+    if cand_b.confidence != cand_a.confidence:
+        return cand_b.confidence > cand_a.confidence
+    return len(ver_b.issues) < len(ver_a.issues)
 
 
 class VisualChainSystem:
@@ -504,17 +540,20 @@ class VisualChainSystem:
         obs: Observation,
         cand: CandidateAnswer,
         choices: Optional[Dict[str, str]] = None,
+        gt: Optional[str] = None,  # NEW
     ) -> VerificationResult:
         payload = {
             "question": question,
             "choices": choices,
+            "gt": gt,  # NEW (None allowed)
             "observation": obs.model_dump(),
             "candidate": cand.model_dump(),
         }
+        sys_prompt = VERIFIER_SYS_JUDGE if (gt is not None and str(gt).strip() != "") else VERIFIER_SYS_GROUNDING
         return call_structured_json(
             backend=self.backend,
             schema=VerificationResult,
-            system_prompt=VERIFIER_SYS,
+            system_prompt=sys_prompt,
             user_prompt=json.dumps(payload, ensure_ascii=False),
             image_path=image_path,
             max_tokens=self.cfg.max_tokens,
@@ -526,19 +565,31 @@ class VisualChainSystem:
         question: str,
         image_path: Union[str, Path],
         choices: Optional[Dict[str, str]] = None,
+        gt: Optional[str] = None,  # NEW
     ) -> Tuple[Observation, CandidateAnswer, VerificationResult]:
-        obs = self.observe(question, image_path)
-        cand = self.reason(question, obs, choices=choices)
-        ver = self.verify(question, image_path, obs, cand, choices=choices)
+        # Round 1
+        obs1 = self.observe(question, image_path)
+        cand1 = self.reason(question, obs1, choices=choices)
+        ver1 = self.verify(question, image_path, obs1, cand1, choices=choices, gt=gt)
 
-        if self.cfg.retry_on_fail and ver.verdict == "FAIL" and ver.should_retry:
-            focus = ver.fix_hint or "Re-check the most uncertain parts carefully."
-            obs2 = self.observe(question, image_path, extra_focus=focus)
-            cand2 = self.reason(question, obs2, choices=choices)
-            ver2 = self.verify(question, image_path, obs2, cand2, choices=choices)
+        # Retry gate
+        if not (self.cfg.retry_on_fail and ver1.verdict == "FAIL" and ver1.should_retry):
+            return obs1, cand1, ver1
+
+        # Round 2 (fix_hint is passed to Observer)
+        focus = ver1.fix_hint or "Re-check the most uncertain parts carefully."
+        obs2 = self.observe(question, image_path, extra_focus=focus)
+        cand2 = self.reason(question, obs2, choices=choices)
+        ver2 = self.verify(question, image_path, obs2, cand2, choices=choices, gt=gt)
+
+        # Accept policy (rollback switch)
+        if self.cfg.retry_accept_policy == "always":
             return obs2, cand2, ver2
+        if self.cfg.retry_accept_policy == "never":
+            return obs1, cand1, ver1
 
-        return obs, cand, ver
+        # if_better
+        return (obs2, cand2, ver2) if _is_better(ver1, cand1, ver2, cand2) else (obs1, cand1, ver1)
 
 
 # ============================================================
