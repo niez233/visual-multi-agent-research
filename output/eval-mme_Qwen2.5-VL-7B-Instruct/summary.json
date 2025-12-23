@@ -1,0 +1,17 @@
+{
+  "cmd": "eval-mme",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "dataset_id": "lmms-lab/MME",
+  "split": "test",
+  "limit": 200,
+  "start_time": "2025-12-23T02:09:18.948082",
+  "end_time": "2025-12-23T02:50:14.570887",
+  "output_dir": "output/eval-mme_Qwen2.5-VL-7B-Instruct2",
+  "predictions_file": "output/eval-mme_Qwen2.5-VL-7B-Instruct2/predictions.jsonl",
+  "total": 196,
+  "correct": 137,
+  "accuracy": 0.6989795918367347,
+  "choice_mapping_failures": 0,
+  "errors": 4,
+  "resume_enabled": false
+}

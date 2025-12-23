@@ -1,0 +1,22 @@
+dataset:
+  out_root: "./datasets_out"
+  hf_endpoint: null
+  dataset_id: "lmms-lab/MME"
+  split: "test"
+  limit: 200
+
+model:
+  name: "Qwen/Qwen2.5-VL-7B-Instruct"
+  device_map: "auto"
+  torch_dtype: "auto"
+  max_image_pixels: null
+  use_fast_processor: null
+
+generation:
+  max_tokens: 800
+  temperature: 0.2
+  no_retry: false
+
+# MME 是非选择题/多为 yes-no，因此不需要 choice_extractor
+mme:
+  use_choice_extractor: false
